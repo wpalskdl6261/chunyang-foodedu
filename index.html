@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="학교급식 선도학교를 운영하는 춘양초등학교의 식생활교육 이야기">
+<meta property="og:title" content="춘양초 식생활교육">
+<meta property="og:description" content="학교급식 선도학교를 운영하는 춘양초등학교의 식생활교육 이야기">
+<link rel="icon" href="assets/emblem.png">
+<title>춘양초 식생활교육</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<style id="main-style">
+/* Layout: 식판 칸막이를 닮은 구획 — 상단바, 식판 히어로, 소개 띠, 월별 표, 보도자료가 한 단으로 쌓인다 */
+:root{
+  --bg:#F4F7F3; --surface:#FFFFFF; --tray:#E1E8E4; --tray-edge:#C5D0CA;
+  --fg:#1D2823; --muted:#5A6761; --line:#DAE2DD;
+  --leaf:#2D7649; --leaf-soft:#E2F0E6; --on-leaf:#FFFFFF;
+  --yolk:#D98C1F; --yolk-soft:#FBEBD0; --chili:#C4453A; --on-chili:#FFFFFF;
+  --shadow:rgba(29,40,35,.08);
+  --font-display:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font-body:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131915; --surface:#1B231F; --tray:#25302A; --tray-edge:#36433C;
+    --fg:#E5ECE8; --muted:#9BA9A2; --line:#2C3731;
+    --leaf:#6EC18E; --leaf-soft:#1E3427; --on-leaf:#0F2418;
+    --yolk:#F0B456; --yolk-soft:#3A2E19; --chili:#EB7A6C; --on-chili:#2A0F0B;
+    --shadow:rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131915; --surface:#1B231F; --tray:#25302A; --tray-edge:#36433C;
+  --fg:#E5ECE8; --muted:#9BA9A2; --line:#2C3731;
+  --leaf:#6EC18E; --leaf-soft:#1E3427; --on-leaf:#0F2418;
+  --yolk:#F0B456; --yolk-soft:#3A2E19; --chili:#EB7A6C; --on-chili:#2A0F0B;
+  --shadow:rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.65;word-break:keep-all}
+img{max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:700;font-size:1.9rem;line-height:1.25;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--yolk);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:20px}
+section{scroll-margin-top:80px}
+
+/* 상단바 */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{flex:none;display:block;width:40px;height:auto}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text small{font-size:.75rem;color:var(--muted);letter-spacing:.04em}
+.brand-text span{font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:-.02em}
+.nav{display:flex;gap:4px;overflow-x:auto;min-width:0}
+.nav a{text-decoration:none;padding:8px 12px;border-radius:999px;white-space:nowrap;font-weight:500;font-size:.95rem}
+.nav a:hover{background:var(--leaf-soft);color:var(--leaf)}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-weight:600;font-size:.95rem;padding:10px 18px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none}
+.btn-leaf{background:var(--leaf);color:var(--on-leaf)}
+.btn-leaf:hover:not(:disabled){filter:brightness(1.08)}
+.btn-ghost{background:transparent;border-color:var(--tray-edge);color:var(--fg)}
+.btn-ghost:hover:not(:disabled){border-color:var(--leaf);color:var(--leaf)}
+
+/* 히어로 + 식판 */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding-block:56px 64px}
+.hero-copy{min-width:0;display:flex;flex-direction:column;gap:18px}
+.eyebrow{margin:0;font-size:.85rem;font-weight:600;letter-spacing:.06em;color:var(--leaf)}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.3rem,5.2vw,3.5rem);line-height:1.22;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--yolk)}
+.lede{margin:0;color:var(--muted);max-width:34em}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+.meal{margin:0;min-width:0;display:flex;flex-direction:column;gap:12px}
+.meal-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.meal-title{font-family:var(--font-display);font-weight:700;font-size:1.3rem;letter-spacing:-.02em}
+.meal-date{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.tray{display:grid;grid-template-columns:repeat(12,1fr);gap:10px;padding:14px;background:var(--tray);border:1px solid var(--tray-edge);border-radius:28px;box-shadow:0 10px 30px var(--shadow)}
+.cell{min-width:0;background:var(--surface);border-radius:12px;padding:12px 8px;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;box-shadow:inset 0 2px 4px var(--shadow)}
+.cell b{font-weight:600;font-size:.95rem;line-height:1.3;overflow-wrap:anywhere}
+.cell i{font-style:normal;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.side{grid-column:span 4}
+.rice,.soup{grid-column:span 6;min-height:118px;border-radius:18px}
+@keyframes cell-wait{50%{opacity:.55}}
+@media (prefers-reduced-motion:no-preference){.cell.is-loading{animation:cell-wait 1.4s ease-in-out infinite}}
+.meal-note{margin:0;font-size:.9rem;color:var(--muted)}
+.rice{border-bottom-left-radius:22px}
+.soup{border-bottom-right-radius:22px}
+.meal-foot{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.kcal strong{font-size:1.25rem;color:var(--fg);font-weight:600}
+.sample-tag{margin-left:auto;font-size:.75rem;padding:2px 10px;border-radius:999px;background:var(--yolk-soft);color:var(--fg)}
+.allergy{font-size:.85rem;color:var(--muted)}
+.allergy summary{cursor:pointer;width:max-content;max-width:100%;color:var(--leaf);font-weight:500}
+.allergy ol{margin:10px 0 0;padding:12px 14px 12px 34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:2px 12px}
+
+/* 소개 띠 */
+.band{background:var(--leaf-soft)}
+.about{display:flex;flex-direction:column;gap:28px;padding-block:52px}
+.about-head{display:flex;flex-direction:column;gap:6px}
+.about-head p{margin:0;color:var(--muted)}
+.programs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.program{min-width:0;background:var(--surface);border:1px solid transparent;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+a.program:hover{border-color:var(--leaf)}
+.program-top{display:flex;align-items:center;gap:10px}
+.program-icon{width:38px;height:38px;border-radius:50%;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center;flex:none}
+.program-icon svg{width:20px;height:20px}
+.program h3{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.program p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.6}
+.program-more{margin-top:auto;font-size:.82rem;font-weight:600;color:var(--leaf)}
+.program.is-lead{background:var(--leaf);color:var(--on-leaf);justify-content:center}
+.lead-label{font-size:.8rem;font-weight:600;letter-spacing:.04em;opacity:.85}
+.program.is-lead h3{font-size:1.22rem;line-height:1.45;letter-spacing:-.02em;text-wrap:pretty}
+.nw{white-space:nowrap}
+
+/* 보도자료 */
+.press{display:flex;flex-direction:column;gap:20px;padding-block:40px 64px}
+.press-head{display:flex;flex-direction:column;gap:6px}
+.press-head p{margin:0;color:var(--muted);font-size:.95rem}
+#press-list{display:flex;flex-direction:column;gap:24px}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 20px;align-items:start}
+.press-card{min-width:0;display:flex;flex-direction:column;gap:10px}
+.press-toggle{display:flex;flex-direction:column;gap:8px;width:100%;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.press-toggle:focus-visible{outline-offset:4px}
+.press-title{font-size:1.05rem;font-weight:600;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.press-toggle:hover .press-title{color:var(--leaf)}
+.press-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+
+/* 월별 교육 인포그래픽 */
+.months{display:flex;flex-direction:column;gap:22px;padding-block:60px 20px}
+.months-head{display:flex;flex-direction:column;gap:6px}
+.months-head > p:last-child{margin:0;color:var(--muted)}
+.themes{display:flex;gap:8px;flex-wrap:wrap}
+.theme-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.88rem;font-weight:500;padding:7px 13px 7px 10px;border-radius:999px;border:1px solid var(--tray-edge);background:var(--surface);color:var(--fg);cursor:pointer}
+.theme-btn svg{flex:none;color:var(--leaf)}
+.theme-btn em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+.theme-btn:hover{border-color:var(--leaf)}
+.theme-btn[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:var(--on-leaf)}
+.theme-btn[aria-pressed="true"] svg,.theme-btn[aria-pressed="true"] em{color:var(--on-leaf)}
+.timeline{display:flex;flex-direction:column;border-top:2px solid var(--fg)}
+.month{display:grid;grid-template-columns:52px 190px minmax(0,1fr);gap:8px 18px;align-items:start;padding-block:14px;border-bottom:1px solid var(--line)}
+.month-name{font-weight:700;font-size:1.1rem;line-height:34px;font-variant-numeric:tabular-nums}
+.month-bar{display:flex;align-items:center;gap:10px;height:34px}
+.bar-track{position:relative;flex:1;height:12px}
+.bar-total,.bar-hit{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--leaf)}
+.bar-total.is-context{background:var(--tray-edge)}
+.bar-count{min-width:4.6em;font-size:.9rem;font-weight:600;font-variant-numeric:tabular-nums}
+.bar-count small{font-weight:400;color:var(--muted)}
+.month-empty{grid-column:2 / -1;line-height:34px;font-size:.9rem;color:var(--muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;min-width:0;padding-top:1px}
+.act{display:inline-flex;align-items:center;gap:6px;max-width:100%;font:inherit;font-size:.88rem;line-height:1.35;padding:6px 12px 6px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left}
+.act svg{flex:none;color:var(--leaf)}
+.act time{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums}
+.act:hover{border-color:var(--leaf)}
+.act.hit{background:var(--leaf-soft);border-color:var(--leaf)}
+.act.dim{opacity:.35}
+.bar-plan{position:absolute;left:0;top:0;bottom:0;border:1.5px dashed var(--leaf);border-radius:0 4px 4px 0}
+.act.is-plan{border-style:dashed;border-color:var(--tray-edge);cursor:default}
+.act.is-plan:hover{border-color:var(--tray-edge)}
+.act.is-plan.hit{border-color:var(--leaf)}
+.plan-tag{font-size:.72rem;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--yolk-soft);color:var(--fg)}
+.press-cover{display:block;width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--tray)}
+.press-cover.is-empty{border:1px dashed var(--tray-edge);background:repeating-linear-gradient(135deg,var(--leaf-soft) 0 14px,var(--surface) 14px 28px)}
+.press-meta{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.press-empty{margin:0;padding:32px;text-align:center;color:var(--muted);border:1px dashed var(--tray-edge);border-radius:16px}
+
+/* 보도자료 원문 창 */
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:rgba(8,14,11,.6)}
+.modal-box{width:min(760px,100%);max-height:100%;overflow-y:auto;overscroll-behavior:contain;background:var(--surface);color:var(--fg);border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.modal-box:focus{outline:none}
+.modal-head{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:20px 22px 14px;background:var(--surface);border-bottom:1px solid var(--line)}
+.modal-meta{margin:0;font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.modal-head h2{margin-top:4px;font-size:1.3rem;line-height:1.4;letter-spacing:-.015em}
+.modal-close{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--tray-edge);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer}
+.modal-close:hover{border-color:var(--leaf);color:var(--leaf)}
+.modal-body{display:flex;flex-direction:column;gap:20px;padding:18px 22px 26px}
+.modal-photos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:start}
+.modal-photos img{display:block;width:100%;max-width:100%;height:auto;border-radius:12px}
+.modal-photos.is-odd img:first-child{grid-column:1 / -1}
+.modal-text{white-space:pre-line;font-size:.98rem;line-height:1.85;overflow-wrap:anywhere}
+.modal-origin{align-self:flex-start}
+@keyframes modal-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){.modal:not([hidden]) .modal-box{animation:modal-in .2s ease-out}}
+@media (max-width:520px){
+  .modal{padding-inline:10px}
+  .modal-photos{grid-template-columns:1fr}
+  .modal-head{padding:16px 16px 12px}
+  .modal-body{padding:16px 16px 22px}
+}
+
+footer{border-top:1px solid var(--line);background:var(--surface)}
+.foot{display:flex;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-block:28px;font-size:.85rem;color:var(--muted)}
+.foot strong{display:block;color:var(--fg);font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+.foot p{margin:0}
+.foot-main{display:flex;flex-direction:column;gap:3px}
+.foot-tel{font-variant-numeric:tabular-nums;user-select:all}
+.foot-link{align-self:center;padding:10px 16px;border:1px solid var(--tray-edge);border-radius:999px;color:var(--fg);font-weight:600;font-size:.9rem;text-decoration:none}
+.foot-link:hover{border-color:var(--leaf);color:var(--leaf)}
+
+@media (max-width:900px){
+  .press-grid{grid-template-columns:repeat(2,1fr)}
+  .programs{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:780px){
+  .hero{grid-template-columns:1fr;gap:36px;padding-block:36px 48px}
+}
+@media (max-width:520px){
+  .programs{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nav{width:100%}
+  .month{grid-template-columns:44px minmax(0,1fr)}
+  .acts{grid-column:1 / -1}
+  h2{font-size:1.6rem}
+}
+@media (max-width:440px){
+  .press-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .btn,.nav a,.press-title,.modal-close{transition:background-color .15s,color .15s,border-color .15s,filter .15s}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top">
+      <img class="brand-mark" src="assets/emblem.png" width="40" height="39" alt="춘양초등학교 교표">
+      <span class="brand-text"><small>춘양초등학교</small><span>식생활교육</span></span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#about">소개</a>
+      <a href="#meal">오늘의 급식</a>
+      <a href="#months">월별 교육</a>
+      <a href="#press">보도자료</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow">2026학년도 학교급식 선도학교</p>
+      <h1>골고루 먹고,<br><em>건강하게</em> 자라요</h1>
+      <p class="lede">학교급식 선도학교를 운영하는 춘양초등학교의 식생활 이야기를 한 곳에 모았습니다. 학생과 학부모님 모두 편하게 둘러보세요.</p>
+      <div class="hero-actions">
+        <a class="btn btn-leaf" href="#months">월별 교육 보기</a>
+        <a class="btn btn-ghost" href="#press">보도자료</a>
+      </div>
+    </div>
+
+    <figure class="meal" id="meal">
+      <figcaption class="meal-head">
+        <span class="meal-title" id="meal-title">오늘의 급식</span>
+        <span class="meal-date" id="meal-date"></span>
+      </figcaption>
+      <div class="tray" id="tray" role="list" aria-label="급식 메뉴" aria-busy="true">
+        <div class="cell side is-loading"></div>
+        <div class="cell side is-loading"></div>
+        <div class="cell side is-loading"></div>
+        <div class="cell rice is-loading"></div>
+        <div class="cell soup is-loading"></div>
+      </div>
+      <p class="meal-note" id="meal-note">급식 정보를 불러오는 중이에요.</p>
+      <div class="meal-foot" id="meal-foot" hidden>
+        <span class="kcal"><strong id="meal-kcal"></strong> kcal</span>
+        <span id="meal-protein"></span>
+        <span class="sample-tag">나이스 급식 정보</span>
+      </div>
+      <details class="allergy">
+        <summary>알레르기 유발식품 번호 보기</summary>
+        <ol>
+          <li>난류</li><li>우유</li><li>메밀</li><li>땅콩</li><li>대두</li>
+          <li>밀</li><li>고등어</li><li>게</li><li>새우</li><li>돼지고기</li>
+          <li>복숭아</li><li>토마토</li><li>아황산류</li><li>호두</li><li>닭고기</li>
+          <li>쇠고기</li><li>오징어</li><li>조개류</li><li>잣</li>
+        </ol>
+      </details>
+    </figure>
+  </section>
+
+  <section class="band" id="about">
+    <div class="wrap about">
+      <div class="about-head">
+        <h2>우리 학교 식생활교육</h2>
+        <p>올해 보도자료 30건에 담긴 활동을 일곱 갈래로 정리했어요. 갈래를 누르면 아래 월별 표에서 그 활동만 모아 볼 수 있어요.</p>
+      </div>
+      <div class="programs" id="programs">
+        <div class="program is-lead">
+          <span class="lead-label">2026학년도 특색교육</span>
+          <h3><span class="nw">맛(M.A.T.)나는</span> 식생활 교육으로 건강한 <span class="nw">힘(H.I.M.)</span> 기르기</h3>
+        </div>
+        <a class="program" href="#months" data-theme="rice">
+          <div class="program-top"><span class="program-icon"></span><h3>쌀맛나는 학교</h3></div>
+          <p>1인 1화분으로 벼를 기르고 홀태로 탈곡해 김밥까지 만들었어요. 쌀 요리 대결과 영양 수업도 함께해요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="culture">
+          <div class="program-top"><span class="program-icon"></span><h3>우리·세계 식문화</h3></div>
+          <p>급식으로 떠나는 세계여행(일본·베트남 편), 중국 마라탕과 멕시코 또띠아, 영주 순흥 기지떡으로 여러 식문화를 맛봐요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="green">
+          <div class="program-top"><span class="program-icon"></span><h3>텃밭·잔반 Zero</h3></div>
+          <p>생태체험텃밭에서 기른 채소를 급식과 요리로 먹고, 급식의 숲과 저탄소 온밥상으로 남김없이 먹는 습관을 길러요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="student">
+          <div class="program-top"><span class="program-icon"></span><h3>학생 주도</h3></div>
+          <p>일일카페, 재능 기부, 우리가 만드는 급식 메뉴, 급식 몬스터까지 학생들이 직접 기획하고 운영해요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="app">
+          <div class="program-top"><span class="program-icon"></span><h3>식생활 앱·골든벨</h3></div>
+          <p>교원 식생활 교육연구동아리가 만든 앱으로 공부하고, 선후배가 짝을 지어 식생활 골든벨을 울렸어요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="community">
+          <div class="program-top"><span class="program-icon"></span><h3>교육공동체 함께</h3></div>
+          <p>어버이날 비밀 요리칭찬, 가족과 떠난 식문화탐방, 온 가족 집밥 인증 주간으로 가정과 함께 배워요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+        <a class="program" href="#months" data-theme="career">
+          <div class="program-top"><span class="program-icon"></span><h3>진로 체험</h3></div>
+          <p>쇼콜라티에, 제빵사, 도예가를 학교로 초청해 음식과 관련된 직업을 직접 체험했어요.</p>
+          <span class="program-more">월별 표에서 보기 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="months wrap" id="months">
+    <div class="months-head">
+      <p class="eyebrow">2026학년도 보도자료로 본</p>
+      <h2>월별 식생활교육 한눈에</h2>
+      <p>달마다 어떤 교육을 했는지 모았습니다. 활동을 누르면 보도자료 전문을 볼 수 있어요.</p>
+    </div>
+    <div class="themes" id="themes" role="group" aria-label="주제별로 보기"></div>
+    <div class="timeline" id="months-body"><p class="press-empty">보도자료가 올라오면 달마다 모아서 보여 드려요.</p></div>
+  </section>
+
+  <section class="press wrap" id="press">
+    <div class="press-head">
+      <h2>보도자료</h2>
+      <p>교육지원청에 소개된 춘양초 식생활교육 이야기입니다. 사진을 누르면 보도자료 전문을 볼 수 있어요.</p>
+    </div>
+    <div id="press-list"><p class="press-empty">아직 올라온 보도자료가 없습니다.</p></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-main">
+      <strong>춘양초등학교 식생활교육</strong>
+      <p>경상북도 봉화군 춘양면 의양로 24-1</p>
+      <p>대표 전화 <span class="foot-tel">054-672-3013</span></p>
+    </div>
+    <a class="foot-link" href="http://school.gyo6.net/chunyanges" target="_blank" rel="noopener">춘양초등학교 홈페이지 바로가기 ↗</a>
+  </div>
+</footer>
+
+<div class="modal" id="press-modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div>
+        <p class="modal-meta" id="modal-meta"></p>
+        <h2 id="modal-title"></h2>
+      </div>
+      <button type="button" class="modal-close" id="modal-close" aria-label="닫기">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-photos" id="modal-photos"></div>
+      <div class="modal-text" id="modal-text"></div>
+      <a class="btn btn-ghost modal-origin" id="modal-origin" href="#press" target="_blank" rel="noopener">봉화교육지원청 원문 보기 ↗</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="press-data">[
+ {
+  "id": "press-1594626",
+  "cat": "press",
+  "title": "춘양초, 1학기 학교 교육과정 설명회 개최",
+  "date": "2026-03-27",
+  "body": "춘양초, 1학기 학교 교육과정 설명회 개최\n\n- 특색교육으로 교육공동체 모두가 하나되는 춘양 교육 설명회\n\n□ 춘양초등학교(교장 김성동)은 3월 25일(수), 춘양초 시청각실에서 ‘봄(B.O.M.)과 함께 온 마을 볕(S.U.N.) 비추는 봄볕 춘양 교육’이라는 주제로 2026학년도 1학기 학교 설명회 및 학부모 총회를 실시하였다.\n\n□ 이번 설명회에서는 많은 학부모님들께서 참여하여 2026학년도 춘양 교육, 학사 일정 등 춘양 교육과정의 전반에 대한 안내가 이루어 졌다. 특히 올해 춘양초의 특색교육인 식생활교육과 교육공동체(봄(B.O.M.))가 함께하는 학부모 참여 교육을 중점적으로 안내하였다.\n\n□ 춘양초등학교는 올해 유관 기관과 연계하여 건강한 식생활과 관련된 다양한 프로그램을 운영한다. 특히 식생활 학부모 연수, 쌀맛나는 학교를 통한 벼재배, 교육공동체 식도락 여행 등 교육 공동체 모두가 참여하는 활동으로 학생들의 식습관 형성 및 교육공동체의 올바른 식문화 조성에 기여하고자 한다.\n\n□ 추가적으로, 도교육청에서 주관하는 학부모 도전! 삶 성취 교육감 인증제 홍보 활동 안내를 통해 학생, 학부모, 교원 모두가 함께하는 춘양 교육을 이루어 내고자 노력하고 있다.\n\n□ 교육과정 설명회에 참석한 춘양초 6학년 도OO학생 학부모는 “학교의 교육 방향과 목표를 자세히 알 수 있어서 좋았다. 2026학년도 춘양초의 특색교육이 학생들에게 큰 도움이 될 것 같다.”라고 소감을 밝혔다.\n\n□ 김성동 교장은 “이번 교육과정 설명회를 통해 학부모님들께 학교의 교육 방향과 목표를 명확하게 전달하고, 학교와 가정의 협력을 통해 학생들의 성장을 도모하는 시간을 가졌다. 앞으로도 다양한 교육 프로그램을 통해 학생들의 건강한 식생활 교육과 교육공동체 모두가 함께하는 활동에 대한 지원을 아끼지 않겠다.”라고 밝혔다.",
+  "images": [
+   {
+    "src": "assets/press/1594626/photo1.jpg",
+    "alt": "춘양초, 1학기 학교 교육과정 설명회 개최 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1594626/photo2.jpg",
+    "alt": "춘양초, 1학기 학교 교육과정 설명회 개최 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1594626"
+  },
+  "theme": "community",
+  "label": "교육과정 설명회"
+ },
+ {
+  "id": "press-1598415",
+  "cat": "press",
+  "title": "춘양초, 자연과 함께 걷는 식문화 벚꽃기행 실시",
+  "date": "2026-04-08",
+  "body": "춘양초, 자연과 함께 걷는 식문화 벚꽃기행\n\n- 친구들과 벚꽃 나들이도 하고, 경북 지역 특산물도 체험해요!\n\n□ 춘양초등학교(교장 김성동)은 4월 7일(화), 경상북도 영주시에서 4~6학년을 대상으로 ‘자연과 함께 걷는 식문화 벚꽃기행’을 실시하였다.\n\n□ 이날 학생들은 벚꽃이 만개한 서천변을 배경으로 사진 콘테스트에 참여하며 추억을 쌓았으며, 동시에 바른 자세로 걷기 교육을 받으며 몸도 마음도 건강해지는 뜻깊은 시간을 가졌다. 특히 이날 행사는 지역의 문화를 이해하고 존중하는 태도를 기르기 위한 인성교육활동의 일환으로 마련되었다.\n\n□ 또한, 학생들은 영주 지역의 대표 특산물인 ‘순흥 기지떡’의 유래에 대해 배우고 직접 맛보며 우리 전통의 맛과 멋을 이해하는 기회를 가졌다. 순흥기지떡은 찹쌀과 막걸리 등의 재료를 발효시켜 만든 떡으로, 특유의 향긋한 풍미와 부드러운 식감이 특징이다.\n\n□ 행사에 참여한 춘양초 4학년 김OO 학생은 “선생님, 친구들과 함께 벚꽃 길에서 인생사진도 찍고, 맛있는 떡도 먹어서 행복했어요. 내년에도 또 오고 싶어요.”라며 활동 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 행사를 통해 학생들이 지역의 역사와 식문화를 배우고 올바른 인성을 함양하는 데 도움이 되길 바란다\"라며 \"앞으로도 학생들에게 다양한 체험학습 기회를 제공해 건강한 사회인으로 성장할 수 있도록 최선을 다하겠다.\"라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1598415/photo1.jpg",
+    "alt": "춘양초, 자연과 함께 걷는 식문화 벚꽃기행 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1598415/photo2.jpg",
+    "alt": "춘양초, 자연과 함께 걷는 식문화 벚꽃기행 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1598415"
+  },
+  "theme": "culture",
+  "label": "식문화 벚꽃기행"
+ },
+ {
+  "id": "press-1605788",
+  "cat": "press",
+  "title": "춘양초, 학생 주도 재능 기부 활동 매년 실시",
+  "date": "2026-04-29",
+  "body": "춘양초, 학생 주도 재능 기부 활동 매년 실시\n\n- 나의 재능을 친구들에게 마음껏 보여주어요!\n\n□ 춘양초등학교(교장 김성동)은 2023년도부터 매년 4월, 춘양초 4~6학년 학생들을 대상으로 학생 주도 재능 기부 활동을 실시하고 있다.\n\n□ 학생 주도 재능기부 활동이란 학생들이 스스로 자신이 좋아하는 것, 잘하는 것을 찾아 2주간 연습을 하고 시나리오를 작성한 뒤 친구들에게 자신의 재능을 알려주는 형태로 진행되며, 2025년 농어촌 참좋은학교 우수사례 활동으로도 소개된 적이 있다. 2026학년도에는 본교의 특색교육인 식생활교육과 체육교육 분야에서의 재능기부가 활발히 이루어졌다.\n\n□ 식생활 분야에서는 모닝계란빵 만들기, 태극도시락 만들기 활동 등이 진행되어 학생 주도로 음식 영양 성분 소개, 만들기, 시식 순서로 진행되었으며, 재능기부에 필요한 재료는 학교 예산으로 제공하였다.\n\n□ 체육 분야에서는 풋살, 음악 줄넘기, 피구, 태권도 등의 재능이 기부 되었으며 재능기부에 참여한 4학년 김OO 학생은 “친구들의 다양한 재능기부 덕분에 얼굴에 웃음이 활짝 나왔다. 2학기 때도 또 하고 싶다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 재능 기부 활동을 통해 학생들이 서로 가르쳐주고, 가르침 받는 모습이 보기 좋았다.”라며 \"앞으로도 학생들의 재능과 끼를 펼칠 수 있는 기회를 제공해 건강한 사회인으로 성장할 수 있도록 최선을 다하겠다.\"라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1605788/photo1.jpg",
+    "alt": "춘양초, 학생 주도 재능 기부 활동 매년 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1605788/photo2.jpg",
+    "alt": "춘양초, 학생 주도 재능 기부 활동 매년 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1605788"
+  },
+  "theme": "student",
+  "label": "학생 재능 기부"
+ },
+ {
+  "id": "press-1609147",
+  "cat": "press",
+  "title": "춘양초, 비밀 요리칭찬과 함께하는 행복한 어버이날",
+  "date": "2026-05-12",
+  "body": "춘양초, 비밀 요리칭찬과 함께하는 행복한 어버이날\n\n- 가족들 몰래 요리를 칭찬하고, 다양한 선물로 마음을 표현해요!\n\n□ 춘양초등학교(교장 김성동)은 어버이날을 기념해 2026년 3월 16일(월)부터 5월 7일(목)까지 비밀 요리칭찬 프로젝트를 비롯하여 마스크팩 만들기, 한지 카네이션 제작, 효도계단책 등 다양한 선물 제작 활동을 실시하였다.\n\n□ 올해 학교급식 선도학교로 지정된 춘양초등학교는 ‘맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기’란 주제로 학생, 학부모, 교사 등 교육공동체가 모두 함께하는 식생활 교육을 운영하고 있다.\n\n□ 이번 프로그램에서는 가족들의 소중한 밥상에 대해 기록하고 고마움을 표현하고자 가족 비밀 요리칭찬 프로젝트를 두달간 진행하였다. 뿐만 아니라 가족들의 피부 건강을 위한 마스크팩 만들기, 한자 카네이션 만들어 선물하기, 다양한 쿠폰이 들어있는 효도계단책 등을 만들어 어버이날을 풍족하게 하였다.\n\n□ 이번 비밀 요리칭찬 프로젝트에 참여한 6학년 이OO 학생은 “이번 기회를 통해 가족들이 주는 밥상의 소중함을 깨달을 수 있었다. 앞으로도 가족들이 만들어주는 음식을 남기지 않고 먹겠다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"교육 공동체 모두가 함께 건강한 식생활에 대해 직접 느껴보는 계기가 되었다.”라며 \"교육공동체가 함께하여 건강한 식생활 문화를 만들어 갈 수 있는 다양한 프로그램을 지원하겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1609147/photo1.jpg",
+    "alt": "춘양초, 비밀 요리칭찬과 함께하는 행복한 어버이날 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1609147/photo2.jpg",
+    "alt": "춘양초, 비밀 요리칭찬과 함께하는 행복한 어버이날 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1609147"
+  },
+  "theme": "community",
+  "label": "어버이날 비밀 요리칭찬"
+ },
+ {
+  "id": "press-1610499",
+  "cat": "press",
+  "title": "춘양초, 아침밥 문화 확산 및 금융교육 실시",
+  "date": "2026-05-15",
+  "body": "춘양초, 아침밥 문화 확산 및 금융교육 실시\n\n- 아침밥을 먹으며 쌀 소비를 촉진하고, 금융에 대해서도 배워요!\n\n□ 춘양초등학교(교장 김성동)은 지난 2026년 5월 13일(목), 시청각실에서 전교생을 대상으로 ‘아침밥 먹기 문화확산 교육 및 행복채움금융교실’을 운영하였다.\n\n□ 올해 ‘쌀맛나는 학교’로 지정된 춘양초등학교는 초등학교 교육과정과 연계한 쌀 관련 맞춤 교육 및 체험활동을 준비하고 있다. 5월 중으로 운영대행기관을 통해 교육용 재배키트를 제공 받아 학생들이 직접 벼를 재배해고 재배한 벼로 건강한 한끼를 만들어 볼 예정이다.\n\n□ 이와 관련하여 경북농협에 계신 강사를 직접 초빙하여 아침밥의 중요성, 쌀 소비 확산을 위한 문화 조성 및 화폐의 가치와 금융기관의 역할 등 금융경제교육도 더불어 실시하였다.\n\n□ 이번 아침밥 문화 확산 및 금융교육에 참여한 4학년 김OO 학생은 “황희찬 선수가 아침밥을 매일 챙겨먹는다는 것을 알았다. 나도 앞으로 아침밥을 든든히 챙겨 먹으며 황희찬 선수처럼 건강해지도록 노력하겠다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"인접한 외부 기관의 강사를 초빙해 전문성 있는 교육을 진행할 수 있었다. 앞으로는 다양한 외부기관과 연계한 영양식문화교육 활동으로 더욱 다채롭고 전문성이 가미된 활동들을 준비해보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1610499/photo1.jpg",
+    "alt": "춘양초, 아침밥 문화 확산 및 금융교육 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1610499/photo2.jpg",
+    "alt": "춘양초, 아침밥 문화 확산 및 금융교육 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1610499"
+  },
+  "theme": "rice",
+  "label": "아침밥 문화·금융교육"
+ },
+ {
+  "id": "press-1610504",
+  "cat": "press",
+  "title": "춘양초, 저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인",
+  "date": "2026-05-15",
+  "body": "저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인\n\n- 건강한 식단와 함께 목살을 먹으며 친구와 사이좋게 지내요!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 14일(목), 전교생을 대상으로 급식실에서‘경북 저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인’을 운영하였다.\n\n□ ‘경북 저탄소 온밥상’이란 경상북도교육청이 2026년부터 본격 추진하는 학교 급식 공동식단으로, 지역 식재료(로컬푸드)를 활용해 탄소 배출을 줄이고 기후 위기에 대응하는 환경 친화적 식생활 교육 사업을 의미한다.\n\n□ 올해 ‘학교급식 선도학교’를 운영 중인 춘양초등학교는 경북 저탄소 온밥상과 학교폭력예방 캠페인을 결합해 친구들과 함께 목살 찹스테이크를 먹으며 우애를 다지는 ‘멱살 대신 목살’ 캠페인을 실시하였다.\n\n□ 이번 경북 저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인 참여한 5학년 김OO 학생은 “멱살 대신 목살이라는 문구가 재미있었다. 친구들과 캠페인도 하고 목살도 먹으니 자연스럽게 친구들과 함께 웃게 되었다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"학생들이 저탄소 식습관을 익히면서 식사로 지구 환경을 지키는 구체적 실천 방법을 배우면서 동시에 학교폭력예방도 할 수 있는 의미있는 캠페인이였다. 앞으로도 꾸준한 저탄소 온밥상 식단을 통해 환경 친화적인 식생활 교육을 실천해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1610504/photo1.jpg",
+    "alt": "춘양초, 저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1610504/photo2.jpg",
+    "alt": "춘양초, 저탄소 온밥상과 함께하는 멱살 대신 목살 캠페인 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1610504"
+  },
+  "theme": "green",
+  "label": "저탄소 온밥상 캠페인"
+ },
+ {
+  "id": "press-1611067",
+  "cat": "press",
+  "title": "춘양초, 우리 손으로 만든 행복 한 접시 일일카페운영",
+  "date": "2026-05-18",
+  "body": "춘양초, 우리 손으로 만든 행복 한 접시\n\n메뉴 선정부터 조리까지, 건강한 식생활을 익혀요!\n\n□ 춘양초등학교(교장 김성동)은 학생들의 바른 식생활 습관과 협동심을 기르기 위해 2026년 5월 11일(월)에 일일카페 운영 프로젝트를 실시하였다.\n\n□ 올해 학교급식 선도학교로 지정된 춘양초등학교는 ‘맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기’란 주제로 학생, 학부모, 교사 등 교육공동체가 모두 함께하는 식생활 교육을 운영하고 있다.\n\n□ 이번 프로젝트에서는 6학년 학생들이 직접 메뉴를 선정하고 간단한 브런치와 음료를 준비해 친구들과 교직원에게 제공하였다. 학생들은 반쎄오, 퀘사디야, 파스타, 에이드 등 다양한 메뉴를 함께 의논해 정하였고, 위생과 안전 수칙을 배우며 조리 과정에도 참여하였다. 또한 역할을 나누어 주문받기, 배달, 정리 활동을 하며 협동의 중요성을 배울 수 있었다.\n\n□ 6학년 이OO 학생은 “메뉴를 정하고 음식을 만들어 손님들에게 제공하는 과정이 즐거웠고 준비하는 사람들의 노력과 정성을 느낄 수 있는 시간이었다.”고 소감을 밝혔다.\n\n□ 김성동 교장은 “학생들이 직접 계획하고 실천하는 활동을 통해 건강한 식생활과 배려의 가치를 자연스럽게 배울 수 있었다.”라며 “앞으로도 학생들이 즐겁게 참여하며 성장할 수 있는 다양한 체험 중심 프로그램을 지속적으로 운영하겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1611067/photo1.jpg",
+    "alt": "춘양초, 우리 손으로 만든 행복 한 접시 일일카페운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1611067/photo2.jpg",
+    "alt": "춘양초, 우리 손으로 만든 행복 한 접시 일일카페운영 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1611067"
+  },
+  "theme": "student",
+  "label": "학생 일일카페"
+ },
+ {
+  "id": "press-1611069",
+  "cat": "press",
+  "title": "춘양초, 맛과 힘이 나는 스승의 날 운영",
+  "date": "2026-05-18",
+  "body": "맛과 힘이 나는 스승의 날 운영\n\n- 스승의 날 카네이션과 편지, 수제 아이스티로 선생님과 함께 해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 15일(금), 전교생과 전교직원이 함께 ‘맛과 힘이 나는 스승의 날’이라는 주제로 교내 행사를 진행하였다.\n\n□ 식생활과 함께하는 스승의 날 행사를 통해 상호 존경의 문화를 조성하고 교육공동체 연계형 통합 프로그램을 고안하기 위해 진행된 이번 행사에서는 스승의 날 한지 카네이션 선물, 스승의 날 이색 편지 적기, 선생님을 위한 이동식 카페 등으로 채워졌다.\n\n□ 스승의 날 이색 편지에서는 선생님께 만들어 드리고 싶은 음식을 그림으로 그려보고, 선생님 성함 삼행시 짓기 등을 담았으며, 이와 더불어 고학년 학생들이 수제 아이스티를 만들어 한지 카네이션과 함께 직접 선생님들께 전달하는 형식으로 진행 되었다.\n\n□ 이번 맛과 힘이 나는 스승의 날 행사에 참여한 4학년 김OO 학생은 “선배들과 함께 한지 카네이션, 수제 아이스티, 스승의 날 편지를 드렸다. 선생님들께서 웃는 모습을 보고 나도 행복했다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"맛과 힘이 나는 스승의 날 행사 활동을 통해 교사와 학생이 모두 웃을 수 있는 계기를 마련했다. 앞으로는 교사와 학생 뿐 아니라 교육공동체 모두가 식생활교육을 통해 행복해질 수 있는 프로그램을 마련해보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1611069/photo1.jpg",
+    "alt": "춘양초, 맛과 힘이 나는 스승의 날 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1611069/photo2.jpg",
+    "alt": "춘양초, 맛과 힘이 나는 스승의 날 운영 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1611069"
+  },
+  "theme": "community",
+  "label": "맛과 힘이 나는 스승의 날"
+ },
+ {
+  "id": "press-1616185",
+  "cat": "press",
+  "title": "춘양초, 벼 재배로부터 시작하는 쌀맛나는 학교",
+  "date": "2026-06-02",
+  "body": "벼 재배로부터 시작하는 쌀맛나는 학교\n\n- 씨앗을 심고 재배와 수확까지 체험해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 19일(화)부터 5월 29(금)까지 전교생과 교직원이 함께 ‘벼 재배 화분 만들기’활동을 실시하였다.\n\n□ 올해 ‘쌀맛나는 학교’로 지정된 춘양초등학교는 초등학교 교육과정과 연계한 쌀 관련 맞춤 교육 및 체험활동을 운영하고 있다. 체험활동의 첫 시작으로 벼 재배 화분 만들기 활동을 진행하였다.\n\n□ 농림수산식품부와 농림수산식품교육문화원과 협력하여 운영되고 있는 이 활동은 사전에 벼 재배 화분 키트를 제공받아 학생 1인 1화분을 만들어 볕이 잘 드는 학교 화단에 배치하는 순서로 진행되었다. 또한 그 과정 속에서 재배와 수확에 경험이 많은 교직원들이 발 벗고 나서 도움을 주었다.\n\n□ 이번 벼 재배 화분 만들기 행사에 참여한 4학년 김OO 학생은 “내가 만든 화분에 직접 이름도 지어주고 물도 계속 주니까 어느새 싹이 돋았다. 앞으로도 열심히 키워 벼를 재배해 보겠다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"쌀맛나는 학교 운영으로 전교생이 씨앗을 심고 재배와 수확까지 할 수 있는 교육 기회를 얻고 있다. 일련의 과정 속에서 쌀의 소중함을 알고 쌀 소비를 촉진할 수 있는 교육들을 함께 운영해보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1616185/photo1.jpg",
+    "alt": "춘양초, 벼 재배로부터 시작하는 쌀맛나는 학교 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1616185/photo2.jpg",
+    "alt": "춘양초, 벼 재배로부터 시작하는 쌀맛나는 학교 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1616185"
+  },
+  "theme": "rice",
+  "label": "벼 재배 화분 만들기"
+ },
+ {
+  "id": "press-1616605",
+  "cat": "press",
+  "title": "춘양초, 쌀 소비촉진을 위한 흑백요리쌀 요리 대결 실시",
+  "date": "2026-06-04",
+  "body": "쌀 소비촉진을 위한 흑백요리쌀 요리 대결 실시\n\n- 우리 쌀로 다양한 음식을 만들어 보고, 맛을 평가해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 2일(화), 전교생을 대상으로 쌀 소비를 촉진하고 올바른 식생활 문화를 형성하기 위해 ‘흑백요리쌀 요리 대결’을 실시하였다.\n\n□ 올해 ‘쌀맛나는 학교’로 지정된 춘양초등학교는 초등학교 교육과정과 연계한 쌀 관련 맞춤 교육 및 체험활동을 운영하고 있다. 이번 활동에서는 우리 쌀을 이용한 다양한 요리를 5학년 학생들이 직접 만들고, 흑백요리사의 컨셉을 가져와 전교생을 대상으로 맛을 평가 받는 방식으로 진행되었다.\n\n□ 흑백요리쌀 백팀이 만든 요리는 두바이 쫀득 찹쌀떡과 밥버거, 흑팀이 만든 요리는 계란 초밥과 소떡 소떡으로 학생들이 직접 메뉴를 선정하고 조리 방법을 연습하였다. 또한 캔바, 망고보드 등 디지털 앱을 활용하여 직접 포스터를 만들고 홍보하는 활동까지 선보였다.\n\n□ 이번 흑백요리쌀 요리 대결 행사에 참여한 5학년 남OO 학생은 “우리 모둠이 만든 요리를 선후배들이 맛있게 먹는 모습이 인상 깊었다. 쌀로도 건강하고 맛있는 요리를 만들 수 있다는 것을 이번 기회에 알게 되었다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"쌀맛나는 학교 운영을 위해 다양한 활동을 준비하고 진행하는 학생과 선생님의 모습이 인상 깊었다. 앞으로도 올바른 식문화 개선을 위해 전교생이 함께하는 다양한 활동들을 준비해 보겠다”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1616605/photo1.jpg",
+    "alt": "춘양초, 쌀 소비촉진을 위한 흑백요리쌀 요리 대결 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1616605/photo2.jpg",
+    "alt": "춘양초, 쌀 소비촉진을 위한 흑백요리쌀 요리 대결 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1616605"
+  },
+  "theme": "rice",
+  "label": "흑백요리쌀 요리 대결"
+ },
+ {
+  "id": "press-1619143",
+  "cat": "press",
+  "title": "춘양초, 식생활교육을 위한 앱 제작 및 배포",
+  "date": "2026-06-11",
+  "body": "식생활 교육을 위한 앱 제작 및 배포\n\n- 바른 식생활과 관련된 정보를 게임을 통해 재미있게 배워요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 4일(목), 전교생을 대상으로 올바른 식생활 문화를 형성하고 식생활과 관련된 여러 지식 정보를 익히기 위해 식생활 교육을 위한 앱을 자체 제작해 배포하였다.\n\n□ 춘양초 교원 식생활 교육연구동아리 주도로 제작된 식생활 교육 앱은 학생들의 올바른 식생활 지식을 위한 내용으로 이루어져 있다. 먼저 트레이닝 활동인 ‘차근차근 100선 연습장’을 통해 시간 제한 없이 자유롭게 식생활 관련 문제를 골라 풀고 오답 풀이 해설을 보며 학습할 수 있다. 또한 서바이벌 실전 활동인 ‘도전! 영양 골든벨’ 활동을 통해 식생활 퀴즈를 풀고 춘양초 명예의 전당에 도전할 수 있는 프로그램도 준비되어 있다.\n\n□ 이번 식생활 교육 앱을 체험한 4학년 전OO 학생은 “게임처럼 자연스럽게 문제를 풀고, 실시간 명예의 전당에 나의 이름이 올라가는 것이 재미있었다. 7월 달에 있을 진짜 식생활 골든벨도 울려보고 싶다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 식생활 교육 앱은 추후에 진행될 춘양초 식생활 골든벨과 함께 연계되어 제작되었다. 재미있는 앱을 개발해준 식생활 교육연구동아리 교원분들게 감사의 인사를 드린다. 앞으로도 학생들의 흥미를 끌 수 있는 식생활 교육을 고안하기 위해 힘쓰겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1619143/photo1.jpg",
+    "alt": "춘양초, 식생활교육을 위한 앱 제작 및 배포 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1619143/photo2.jpg",
+    "alt": "춘양초, 식생활교육을 위한 앱 제작 및 배포 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1619143/photo3.jpg",
+    "alt": "춘양초, 식생활교육을 위한 앱 제작 및 배포 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1619143"
+  },
+  "theme": "app",
+  "label": "식생활교육 앱 배포"
+ },
+ {
+  "id": "press-1619413",
+  "cat": "press",
+  "title": "춘양초, 모여봐요! 급식의 숲 잔반 Zero 활동 운영",
+  "date": "2026-06-12",
+  "body": "모여봐요! 급식의 숲 잔반 Zero 활동 운영\n\n- 학교 급식을 골고루 먹고 잔반이 없는 급식의 숲을 이루어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 2일(목)부터 매일 전교생을 대상으로 바른 식생활 습관을 형성하고 잔반이 없는 급식을 이루어 질 수 있도록 ‘모여봐요! 급식의 숲’ 활동을 운영하고 있다.\n\n□ 춘양초등학교는 2026학년도 학교 급식 선도학교로 지정되어 ‘맛(M.A.T.)나는 식생활 교육 프로젝트로 건강한 힘(H.I.M.) 기르기’라는 주제로 다양한 식생활 교육을 진행하고 있다.\n\n□ ,그 중 ‘M-Modify 올바른 식습관 형성하기’프로젝트로 고안된 ‘모여봐요! 급식의 숲’활동은 잔반 없는 식습관 형성을 목표로 하고 있다. 반찬과 함께 국물까지 다 먹은 학생들에게는 동물 스티커 2개, 국물을 제외한 나머지 음식을 다 먹은 학생들에게는 동물 스티커 1개를 부여해 학년별로 구성된 급식의 숲에 붙일 수 있다. 급식의 숲에 동물들이 모두 모인 학급은 맛있는 상품을 한가득 받을 수 있도록 계획되어 있다.\n\n□ 이번 ‘모여봐요! 급식의 숲’에 참여한 4학년 선O 학생은 “평소에는 급식을 조금씩 남겼는데 급식의 숲을 동물들로 가득 채우고 싶어 국물까지 다 먹었다. 앞으로도 음식을 남기지 않도록 열심히 노력해 보겠다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"‘모여봐요! 급식의 숲’ 잔반 Zero 활동을 통해 확실히 잔반의 양이 줄어드는 것을 관찰할 수 있었다. 이번 기회를 통해 학생들이 잔반 없는 건강한 식생활 습관을 꾸준히 가질 수 있었으면 한다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1619413/photo1.jpg",
+    "alt": "춘양초, 모여봐요! 급식의 숲 잔반 Zero 활동 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1619413/photo2.jpg",
+    "alt": "춘양초, 모여봐요! 급식의 숲 잔반 Zero 활동 운영 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1619413"
+  },
+  "theme": "green",
+  "label": "모여봐요! 급식의 숲"
+ },
+ {
+  "id": "press-1623149",
+  "cat": "press",
+  "title": "춘양초, 진로체험교실 연계 식생활 교육 실시",
+  "date": "2026-06-23",
+  "body": "진로체험교실 연계 식생활 교육 실시\n\n- 진로체험과 함께하는 식생활 교육으로 요리사의 꿈을 키워요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 17일(수), 3~6학년 학생을 대상으로 진로체험교실 연계 식생활 교육을 실시하였다.\n\n□ 키움, 나눔의 이음터, 봉화진로체험센터의 지원으로 운영된 ‘2026학년도 학교로 찾아가는 진로체험교실’에서 춘양초는 학교 급식 선도학교로서 이에 걸맞는 식생활 교육과 연계하여 ‘달콤한 예술가: 쇼콜라티에’라는 주제로 활동을 진행하였다.\n\n□ 프로그램은 쇼콜라티에라는 직업의 특성에 대해 이야기 나눠고, 커버쳐 초콜릿과 컴파운드 초콜릿의 차이점에 대해 알오보기는 시간을 가졌다. 또한, 몰딩 또는 디핑으로 다양한 초콜릿을 만들고 데코레이션 실습까지 진행해보는 형태로 진행되었다.\n\n□ 이번 진로체험교실 연계 식생활 교육에 참여한 4학년 김OO 학생은 “저의 꿈은 요리사인데 요리사에도 다양한 종류가 있다는 것을 알았어요. 이번 기회로 어떤 요리사가 되고 싶은지 구체적으로 고민해 볼거에요.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"춘양초는 올해 급식 선도학교로서 학교 교육과정에서 뿐만 아니라 다양한 외부 체험 교육과 연계하여 바른 식생활 의식을 키워주기 위해 노력하고 있다. 앞으로도 다채로운 외부 체험 교육과 연계하여 학생들의 안목을 넓힐 수 있는 식생활 교육을 마련해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1623149/photo1.jpg",
+    "alt": "춘양초, 진로체험교실 연계 식생활 교육 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1623149/photo2.jpg",
+    "alt": "춘양초, 진로체험교실 연계 식생활 교육 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1623149"
+  },
+  "theme": "career",
+  "label": "쇼콜라티에 진로체험"
+ },
+ {
+  "id": "press-1625047",
+  "cat": "press",
+  "title": "춘양초, 생태체험텃밭과 함께하는 맛나는 급식",
+  "date": "2026-06-29",
+  "body": "생태체험텃밭과 함께하는 맛나는 급식\n\n- 생태체험텃밭에서 직접 채소를 길러 급식과 함께 먹어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 15일(금)부터 매일 전교생과 교직원과 함께 ‘생태체험텃밭’을 운영하고 있다. 이와 춘양초 특색교육인 식생활과 연계해 ‘생태체험텃밭과 함께하는 맛나는 급식’활동을 진행하였다.\n\n□ 춘양초등학교는 2026학년도 학교 급식 선도학교로 지정되어 ‘맛(M.A.T.)나는 식생활 교육 프로젝트로 건강한 힘(H.I.M.) 기르기’라는 주제로 다양한 식생활 교육을 진행하고 있다.\n\n□ 이번 활동에서는 전교생이 학년별로 심고 싶은 모종(가지, 옥수수, 방울토마토, 상추 등)을 정해 교직원분들과 함께 학교 텃밭에 심었다. 또한, 전교생들이 매일 열심히 텃밭을 가꾸고, 건강하게 키워 낸 작물들을 학교 식단과 연계하여 급식 메뉴와 함께 먹어보는 순서로 실시하였다.\n\n□ 이번 생태체험텃밭과 함께하는 맛나는 급식 활동에 참여한 6학년 정OO 학생은 “친구들이 인간 달팽이라고 할 정도로 상추를 좋아하는데, 우리가 키운 상추를 급식과 함께 먹어보니 더 맛있어서 평소보다 많이 먹었어요.”는 소감을 밝혔다.\n\n□ 김성동 교장은 \"전교생과 교직원이 함께 일궈낸 텃밭의 작물물들이 급식 메뉴로 나오고, 메뉴를 학생들이 맛있게 먹는 모습을 볼 수 있었다. 앞으로 수확될 작물들로 더욱 맛있고 다채로운 급식 메뉴들을 준비할 수 있도록 구상해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1625047/photo1.jpg",
+    "alt": "춘양초, 생태체험텃밭과 함께하는 맛나는 급식 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1625047/photo2.jpg",
+    "alt": "춘양초, 생태체험텃밭과 함께하는 맛나는 급식 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1625047"
+  },
+  "theme": "green",
+  "label": "생태텃밭 맛나는 급식"
+ },
+ {
+  "id": "press-1625049",
+  "cat": "press",
+  "title": "춘양초, 교육공동체 맛나는 식문화탐방 실시",
+  "date": "2026-06-29",
+  "body": "교육공동체 맛나는 식문화탐방 실시\n\n- 교육공동체 모두 함께 대구에서 다양한 식문화 체험을 실시해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 27일(토)부터 학생, 학부모 교직원이 함께한 교육공동체 42명과 함께 땅땅치킨랜드 및 더현대대구 백화점 등지에서 ‘교육공동체 맛나는 식문화탐방’을 실시하였다.\n\n□ ‘맛(M.A.T.)나는 식생활 교육 프로젝트로 건강한 힘(H.I.M.) 기르기’라는 주제 중 T-together(교육공동체) 활동의 일환으로 계획된 이번 식문화탐방은 교육공동체가 함께하는 바른 식습관 개선 및 실천을 목표로 진행되었다.\n\n□ 먼저, 춘양초 교육공동체는 더현대대구의 테이스티 로드를 방문하여 세계 여러나라의 식문화를 탐방해보고, 가족과 함께 식문화를 직접 체험해보았다. 그 후 땅땅치킨랜드를 방문하여 우리나라를 상징하는 K-FOOD 치킨의 역사에 대해 알아보고 가족과 함께 직접 치킨을 만들며 금방 만든 치킨을 맛보는 등 다양한 식문화를 체험할 수 있는 계기를 마련하였다.\n\n□ 이번 교육공동체 맛나는 식문화탐방 활동에 참여한 5학년 임OO 학생은 “가족들과 함께 치킨을 만들고, 만든 치킨을 바로 먹으니까 정말 맛있었어요. 다음에 이런 활동이 있다면 또 참가하고 싶어요.”는 소감을 밝혔다.\n\n□ 김성동 교장은 \"교육공동체 모두 함께 웃으며 식문화탐방을 진행하는 모습이 인상 깊었다. 앞으로도 교육공동체 모두가 함께하는 ‘맛나는 춘양초’를 만들어 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1625049/photo1.jpg",
+    "alt": "춘양초, 교육공동체 맛나는 식문화탐방 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1625049/photo2.jpg",
+    "alt": "춘양초, 교육공동체 맛나는 식문화탐방 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1625049"
+  },
+  "theme": "community",
+  "label": "교육공동체 식문화탐방"
+ },
+ {
+  "id": "press-1625759",
+  "cat": "press",
+  "title": "춘양초, 맛 알려주는 선배 활동 실시",
+  "date": "2026-07-01",
+  "body": "‘맛’알려주는 선배 활동 실시\n\n- 선후배가 함께 짝이 되어 식생활 기초 지식을 공부해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 29일(월)부터 7월 1일(수)까지 전교생을 대상으로 올바른 식생활 문화를 형성하고 식생활과 관련된 여러 지식 정보를 익히기 위해 ‘맛’알려주는 선배 활동을 진행하였다.\n\n□ 춘양초 교원 식생활 교육연구동아리 주도로 제작된 식생활 교육 앱을 중심으로 진행된 이 활동에서는 고학년, 저학년 1대1 멘토, 멘티로 짝을 이루어 식생활 기초 지식을 함께 공부하는 하는 형태로 실시되었다. 식생활 앱을 활용해 미리 식생활과 관련된 기초 지식을 익힌 고학년 학생들이 식생활 문제들을 저학년 학생들과 함께 풀어보며, 저학년 학생들이 올바른 식습관을 형성할 수 있도록 도움을 주었다.\n\n□ 이번 식생활 교육 앱을 체험한 3학년 김OO 학생은 “식생활 앱에서 신화 등급의 어려운 문제를 많이 풀어 랭킹 1위를 하고 있다. 제 짝과 함께 식생활 공부를 열심히 해서 식생활 골든벨도 꼭 울려 보고 싶다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 ‘맛’ 알려주는 선배 활동은 추후에 진행될 춘양초 식생활 골든벨과 함께 연계되어 운영되었다. 앱을 통해 얼마나 식생활 공부를 많이 했는지 실시간으로 확인할 수 있어 학생들이 더욱 열정적으로 활동에 임해주고 있다. 이처럼 전교생 모두 함께할 수 있는 식생활 교육을 앞으로 추진해보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1625759/photo1.jpg",
+    "alt": "춘양초, 맛 알려주는 선배 활동 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1625759/photo2.jpg",
+    "alt": "춘양초, 맛 알려주는 선배 활동 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1625759/photo3.jpg",
+    "alt": "춘양초, 맛 알려주는 선배 활동 실시 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1625759"
+  },
+  "theme": "app",
+  "label": "맛 알려주는 선배"
+ },
+ {
+  "id": "press-1626474",
+  "cat": "press",
+  "title": "춘양초, 봄볕에서 맛과 함께 놀자  도전 식생활 골든벨",
+  "date": "2026-07-03",
+  "body": "“봄볕에서 맛과 함께 놀자!”도전! 식생활 골든벨\n\n- 선후배가 함께 짝이 되어 식생활 골든벨을 울렸어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 7월 2일(목), 전교생을 대상으로 강당에서 “봄볕에서 맛과 함께 놀자!”라는 주제로‘도전! 식생활 골든벨’을 진행하였다.\n\n□ 춘양초 교원 식생활 교육연구동아리 주도로 실시된 이 활동에서는 고학년, 저학년이 서로 짝을 이루어 식생활 기본 상식을 공부하고, 전교생이 강당에 모여 식생활 골든벨을 함께 풀어 보는 시간을 가졌다. 식생활 교육과 관련된 O, X퀴즈와 주관식, 객관식 문제를 풀어 최후 1개 조를 선정하였고, 최후 1개조에 선정된 5학년 금OO 학생과 2학년 이OO 학생이 마지막 식생활 문제를 맞추어 식생활 골든벨을 울릴 수 있었다.\n\n□ 이번 ‘도전! 식생활 골든벨’ 활동에 참여한 4학년 금OO 학생은 “식생활 앱에서 기본 상식 공부를 많이 해서 누나는 최골든벨을 울렸고, 나도 우수 상품을 받았다. 어려운 식생활 문제의 정답이 머릿 속에서 자동으로 나오는 것이 재미있었다.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 ‘도전! 식생활 골든벨’ 문제에서 춘양초 학생들이 골든벨 문제를 정말 잘 풀어 사회자분께서 당황하는 모습을 볼 수 있었다. 이번 골든벨 활동을 통해 학생들이 식생활 기초 상식을 배우고, 그것들을 실생활에서 실천하고 활용할 수 있는 계기가 되었으면 한다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1626474/photo1.jpg",
+    "alt": "춘양초, 봄볕에서 맛과 함께 놀자  도전 식생활 골든벨 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1626474/photo2.jpg",
+    "alt": "춘양초, 봄볕에서 맛과 함께 놀자  도전 식생활 골든벨 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1626474/photo3.jpg",
+    "alt": "춘양초, 봄볕에서 맛과 함께 놀자  도전 식생활 골든벨 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1626474/photo4.jpg",
+    "alt": "춘양초, 봄볕에서 맛과 함께 놀자  도전 식생활 골든벨 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1626474"
+  },
+  "theme": "app",
+  "label": "도전! 식생활 골든벨"
+ },
+ {
+  "id": "press-1628006",
+  "cat": "press",
+  "title": "춘양초, 급식으로 떠나는 세계여행 운영",
+  "date": "2026-07-09",
+  "body": "급식으로 떠나는 세계여행 운영\n\n- 다양한 나라의 맛있는 음식을 급식으로 맛 보아요!\n\n□ 춘양초등학교(교장 김성동)은 지난 7월 8일(수), 전교생을 대상으로 ‘급식으로 떠나는 세계여행’을 춘양초 급식실에서 운영하였다.\n\n□ 춘양초등학교는 2023년부터 국제교류 운영학교로서 세계시민의식을 키우기 위해 다른 나라 학교와 MOU를 맺어 다양한 활동을 진행해오고 있다. 이와 더불어 춘양초등학교의 특색교육인 식생활 교육과 결합해 ‘급식으로 떠나는 세계여행’을 실시하였다. 이번 세계여행의 나라는 ‘일본’으로 급식메뉴로 마제덮밥, 가쓰오유부국, 츠쿠네, 로메인참깨샐러드, 스시도넛을 선보여 일본의 식문화를 직접 체험해볼 수 있는 시간을 가져 보았다.\n\n□ 이번 ‘급식으로 떠나는 세계여행’활동에 참여한 6학년 이OO 학생은 “급식에 처음 먹어보는 신기한 일본 음식이 나와서 재미있었어요. 평소에 급식을 조금 남겼는데 오늘은 맛있어서 음식을 남기지 않고 다 먹었어요.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 ‘급식으로 떠나는 세계여행’운영을 통해 평소 급식에서 맛보기 힘들었던 다양한 메뉴들을 맛볼 수 있었다. 앞으로도 국제교류 운영학교 공모사업과 식생활교육을 결합해 세계 여러나라의 식문화를 체험해볼 수 있는 활동을 고안해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1628006/photo1.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1628006/photo2.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 운영 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1628006/photo3.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 운영 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1628006"
+  },
+  "theme": "culture",
+  "label": "세계여행 일본 편"
+ },
+ {
+  "id": "press-1628566",
+  "cat": "press",
+  "title": "춘양초, 지역자원 연계 세계 식문화 이해교육 실시",
+  "date": "2026-07-10",
+  "body": "지역자원 연계 세계 식문화 이해교육 실시\n\n- 해외 유학생과 함께 다른 나라의 식문화를 배워요!\n\n□ 춘양초등학교(교장 김성동)은 지난 7월 9일(목), 본교 4, 6학년을 대상으로 ‘지역자원 연계 세계 식문화 이해교육’을 춘양초 다목적실에서 운영하였다.\n\n□ 경상북도교육청과 협력하여 진행된 이번 활동에서는 해외 유학생을 활용하여 세계 식문화교육을 활성화하고, 문화의 차이와 다양성에 대한 이해와 존중을 통한 세계시민의식 함양을 목표로 하였다. 먼저, 중국인 해외 유학생 두 분을 초청하여 중국 식문화 예절을 중국어로 배워보는 시간을 가졌으며, 그 후 중국의 식재료 및 수제 마라탕 만드는 방법 등을 배워 보았다.\n\n□ 이번 ‘지역자원 연계 세계 식문화 이해교육’에 참여한 4학년 안OO 학생은 “우리 학교가 중국과 국제교류를 하고 있는데 이번엔 중국인 선생님이 직접 오셔서 중국 음식에 대해 알려주니 신기했어요. 집에서 가족들이랑 마라탕 한번 만들어 보고 싶어요.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 ‘지역자원 연계 세계 식문화 이해교육’을 중국인 선생님께 직접 다른 나라의 식문화에 대해 배워보는 시간을 가져 보았다. 앞으로도 우리나라 뿐만 아니라 세계 여러나라의 식문화에 대해 배우고 직접 경험해볼 수 있는 활동을 준비해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1628566/photo1.jpg",
+    "alt": "춘양초, 지역자원 연계 세계 식문화 이해교육 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1628566/photo2.jpg",
+    "alt": "춘양초, 지역자원 연계 세계 식문화 이해교육 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1628566/photo3.jpg",
+    "alt": "춘양초, 지역자원 연계 세계 식문화 이해교육 실시 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1628566/photo4.jpg",
+    "alt": "춘양초, 지역자원 연계 세계 식문화 이해교육 실시 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1628566"
+  },
+  "theme": "culture",
+  "label": "중국 식문화 이해교육"
+ },
+ {
+  "id": "press-1629920",
+  "cat": "press",
+  "title": "춘양초, 학생 주도형 식생활 프로젝트 학습 전학년 실시",
+  "date": "2026-07-15",
+  "body": "학생 주도형 식생활 프로젝트 학습 전학년 실시\n\n- 우리가 직접 식생활과 관련된 주제를 정하고, 공부해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 6월 8일(월)부터 한달 간 전 학년을 대상으로 ‘학생 주도형 식생활 프로젝트 학습’을 운영하였다.\n\n□ 2026학년도 학교급식 정책 선도학교로 지정된 춘양초등학교는 학생 주도형 식생활 프로젝트 학습을 장려하고, 교육과정과 관련된 식생활 교육을 설계하기 위해 전 학년 식생활 프로젝트 학습을 계획하였다. 1학년은 ‘맛있게 냠냠, 건강하게 쑥쑥!’(10차시), 2학년은 ‘건강하고 맛있는 급식 탐험대’(10차시) 프로젝트 학습을 구성하였으며, 3~6학년은 15차시 학생 생성 교육과정으로 ‘지구를 살리는 식생활 이야기’, ‘흑백 영양사 – 일일식단 만들기’, ‘내가 먹는 음식은 어디서 왔을까? - 로컬푸드 이용 장려 프로젝트’ 등을 운영하였다.\n\n□ 이번 ‘학생 주도형 식생활 프로젝트 학습’에 참여한 5학년 임OO 학생은 “친구들과 함께 식단 영양정보도 알아보고, 식단도 한번 짜보면서, 음식도 만들어 보았어요. 직접 음식을 만들면서 공부하니까 훨씬 재밌어요.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"학생들이 직접 건강한 식생활을 주제로 프로젝트 학습을 구성하고, 실행하는 모습을 지켜볼 수 있었다. 선생님과 학생들이 함께한 결과물을 다른 학교와도 공유할 수 있도록 다양한 교수학습 자료와 홍보자료도 만들어 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1629920/photo1.jpg",
+    "alt": "춘양초, 학생 주도형 식생활 프로젝트 학습 전학년 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1629920/photo2.jpg",
+    "alt": "춘양초, 학생 주도형 식생활 프로젝트 학습 전학년 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1629920/photo3.jpg",
+    "alt": "춘양초, 학생 주도형 식생활 프로젝트 학습 전학년 실시 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1629920/photo4.jpg",
+    "alt": "춘양초, 학생 주도형 식생활 프로젝트 학습 전학년 실시 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1629920"
+  },
+  "theme": "student",
+  "label": "전학년 식생활 프로젝트"
+ },
+ {
+  "id": "press-1631256",
+  "cat": "press",
+  "title": "춘양초, 식생활과 함께하는 나의 꿈 제빵 활동 실시",
+  "date": "2026-07-21",
+  "body": "식생활과 함께하는 나의 꿈! 제빵 활동 실시\n\n- 진로 직업 체험도 하고, 맛있는 빵도 직접 만들어 먹어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 7월 20일(월), 춘양초 3~4학년 학생들을 대상으로 ‘식생활과 함께하는 진로체험 – 제과제빵 만들기’ 활동을 실시하였다.\n\n□ 2026학년도 학교급식 정책 선도학교로 지정된 춘양초등학교는 지역의 다양한 외부 업체와 협력하여 식생활 연계 공모 사업을 운영하고 있다. 이번 활동에서는 식생활과 진로를 연계해 직접 제빵 일을 하시는 제빵사 선생님을 학교로 초대하여 학생들과 함께 빵을 만듦과 동시에 제빵사로서의 직업의 가치를 직접 체험해 볼 수 있도록 운영되었다.\n\n□ 이번 ‘식생활과 함께하는 진로체험’에 참여한 4학년 김OO 학생은 “진짜로 빵을 만드시는 제빵사 선생님과 함께 빵을 만드니 빵이 정말 노릇노릇하게 잘 구워졌어요. 빵 냄새가 너무 좋아서 다 만들자마자 친구들이랑 맛있게 먹었어요.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"춘양초는 다양한 공모사업과 연계해 식생활교육을 운영하고 있다. 지난 진로체험에서는 초콜릿을 이용한 ‘쇼콜라티에’ 활동을 진행했었고, 이번에는 제빵사를 초대해 ‘제과제빵 만들기’을 운영하였다. AI로 인해 다양한 직업군이 생겨나는 미래시대에 발 맞춰 우리 학생들이 식생활과 연계한 다양한 직업군을 체험해볼 수 있도록 추가적인 공모사업도 운영해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1631256/photo1.jpg",
+    "alt": "춘양초, 식생활과 함께하는 나의 꿈 제빵 활동 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1631256/photo2.jpg",
+    "alt": "춘양초, 식생활과 함께하는 나의 꿈 제빵 활동 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1631256/photo3.jpg",
+    "alt": "춘양초, 식생활과 함께하는 나의 꿈 제빵 활동 실시 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1631256/photo4.jpg",
+    "alt": "춘양초, 식생활과 함께하는 나의 꿈 제빵 활동 실시 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1631256"
+  },
+  "theme": "career",
+  "label": "제빵사 진로체험"
+ },
+ {
+  "id": "press-1631590",
+  "cat": "press",
+  "title": "춘양초, 생태체험텃밭과 함께하는 재밌는 요리 실습",
+  "date": "2026-07-22",
+  "body": "생태체험텃밭과 함께하는 재밌는 요리 실습\n\n- 생태체험텃밭에서 채소도 기르고! 친구들과 요리도 만들어 먹고!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 15일(금)부터 매일 전교생과 교직원과 함께 ‘생태체험텃밭’을 운영하고 있다. 이와 춘양초 특색교육인 식생활과 연계해 ‘생태체험텃밭과 함께하는 재밌는 요리 실습’활동을 진행하였다.\n\n□ 춘양초등학교는 2026학년도 학교 급식 선도학교로 지정되어 ‘맛(M.A.T.)나는 식생활 교육 프로젝트로 건강한 힘(H.I.M.) 기르기’라는 주제로 다양한 식생활 교육을 진행하고 있다.\n\n□ 이번 활동에서는 3학년 학생들이 참여해 수박을 생태체험텃밭에 심고 매일 물을 주며 정성스럽게 길렀다. 그 후 학생들과 선생님이 함께 요리에 필요한 재료를 선정하고 준비해, 수박 화채 만들기 활동을 실시하였다.\n\n□ 이번 ‘생태체험텃밭과 함께하는 재밌는 요리 실습’활동에 참여한 3학년 신OO 학생은 “친구들과 함께 텃밭에서 수박도 기르고, 교실에서 다같이 수박화채도 만들어 먹으니 더 재밌고 신나는 것 같아요.”는 소감을 밝혔다.\n\n□ 김성동 교장은 \"오이, 옥수수, 방울토마토, 가지 등 전교생과 교직원이 함께 일궈낸 텃밭의 작물들이 무럭 자라 학생들의 입을 즐겁게 해주고 있다. 이번 생태체험텃밭 활동을 통해 학생들이 음식의 소중함을 느끼고, 채소의 참맛을 알아가는 계기가 되었으면 한다. 앞으로도 생태체험텃밭과 함께하는 다양한 활동들을 준비해보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1631590/photo1.jpg",
+    "alt": "춘양초, 생태체험텃밭과 함께하는 재밌는 요리 실습 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1631590/photo2.jpg",
+    "alt": "춘양초, 생태체험텃밭과 함께하는 재밌는 요리 실습 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1631590"
+  },
+  "theme": "green",
+  "label": "텃밭 수박화채 요리"
+ },
+ {
+  "id": "press-1643502",
+  "cat": "press",
+  "title": "춘양초, 우리가 만드는 급식 메뉴 활동 실시",
+  "date": "2026-09-11",
+  "body": "우리가 만드는 급식 메뉴 활동 실시\n\n- 학생들이 직접 급식 식단을 구성하고, 실제로 급식에 반영해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 8월 31일(월)부터 9월 9일(수)까지 전교생과 교직원이 함께 ‘우리가 만드는 급식 메뉴 활동’을 실시하였다.\n\n□ 춘양초등학교는 2026학년도 학교 급식 선도학교로 지정되어 2학기에도‘맛(M.A.T.)나는 식생활 교육으로 건강한 힘(H.I.M.) 기르기’라는 주제로 다양한 식생활 교육을 진행하고 있다.\n\n□ 이번 활동에서는 전교생이 학교 급식 식단 구성 조건에 맞추어 급식 메뉴 식단을 짜고, 그 중 학년별로 베스트 식단을 1개씩 골라 최종 투표로 단 하나의 식단을 고르는 순서로 진행되었다. 최종 식단은 ‘불고기 비빔밥, 된장찌개, 열무김치, 치즈돈가스, 아이스크림’으로 총 득표수 32표를 받아 선정되었다.\n\n□ 이번 ‘우리가 만드는 급식 메뉴’활동에 참여한 4학년 홍OO 학생은 “급식 식단을 짜고 나니 급식을 만들어 주시는 선생님들께서 얼마나 고생하시는지 깨달았어요. 앞으로 급식에 더 많이 관심을 갖고 맛있게 먹을 거에요.”라는 소감을 밝혔다.\n\n□ 김성동 교장은 \"우리가 만드는 급식 메뉴 활동은 학생 뿐만 아니라 전교직원도 함께 참여하는 행사라는 측면에서 인상 깊었다. 학생들이 급식 메뉴 앞에 모여 급식의 영양과 구성에 대해 토론을 하는 모습도 관찰할 수 있었다. 앞으로도 잔반없는 급식을 위해 학생과 전교직원 모두 노력하는 춘양초가 되겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1643502/photo1.jpg",
+    "alt": "춘양초, 우리가 만드는 급식 메뉴 활동 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1643502/photo2.jpg",
+    "alt": "춘양초, 우리가 만드는 급식 메뉴 활동 실시 활동 사진 2"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1643502"
+  },
+  "theme": "student",
+  "label": "우리가 만드는 급식 메뉴"
+ },
+ {
+  "id": "press-1643505",
+  "cat": "press",
+  "title": "춘양초, 쌀 소비 촉진 연계 영양 수업 연중 실시",
+  "date": "2026-09-11",
+  "body": "쌀 소비 촉진 연계 영양 수업 연중 실시\n\n- 영양 선생님과 함께 다양한 음식 만들며 쌀맛에 대해 알아가요!\n\n□ 춘양초등학교(교장 김성동)은 전교생 대상으로 연중 ‘쌀 소비 촉진 연계 영양 수업’을 진행하고 있다.\n\n□ 올해 ‘쌀맛나는 학교’로 지정된 춘양초등학교는 초등학교 교육과정과 연계한 쌀 관련 맞춤 교육 및 체험활동을 운영하고 있다. 이번 활동에서는 영양 선생님의 창의적 체험활동 수업과 연계하여 쌀을 이용해 다양한 음식을 만들고, 맛보는 활동을 진행하였다.\n\n□ 춘양초 2학년 대상으로 ‘내가 만들어서 더 맛있는 고추장’을 주제로 쌀을 활용한 고추장 만들기를 통해 학생들이 쌀맛에 대해 알아가고 쌀 소비를 촉진하기 위한 마음을 다짐하는 수업을 실시하였다. 3학년 대상으로는 ‘나는야 초밥의 달인’ 이라는 주제로 우리 쌀을 활용해 유부초밥을 직접 만들고 친구들과 함께 나누어 먹어보는 시간을 가져 보았다.\n\n□ 이번 ‘쌀 소비 연계 영양 수업’활동에 참여한 3학년 정OO 학생은 “우리 쌀이 다양한 음식에 활용될 수 있다는 것을 알게 되었어요. 앞으로는 급식에 나오는 밥을 최대한 남기지 않고 열심히 먹어 볼게요.”라는 소감을 밝혔다.\n\n□ 김성동 교장은 \"올해 쌀맛나는 학교를 운영하며 학생들이 우리 쌀의 가치에 대해 알아가고, 그를 통해 더욱 맛있게 급식을 먹는 모습이 인상 깊었다. 앞으로는 학생들이 직접 재배하고 있는 쌀을 수확해 요리 계획을 세우고 다양한 쌀 요리를 만들어보는 활동도 진행해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1643505/photo1.jpg",
+    "alt": "춘양초, 쌀 소비 촉진 연계 영양 수업 연중 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1643505/photo2.jpg",
+    "alt": "춘양초, 쌀 소비 촉진 연계 영양 수업 연중 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1643505/photo3.jpg",
+    "alt": "춘양초, 쌀 소비 촉진 연계 영양 수업 연중 실시 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1643505"
+  },
+  "theme": "rice",
+  "label": "쌀 요리 영양 수업"
+ },
+ {
+  "id": "press-1644746",
+  "cat": "press",
+  "title": "춘양초, 학생 주도 식생활 교육 '급식 몬스터' 운영",
+  "date": "2026-09-16",
+  "body": "학생 주도 식생활 교육 ‘급식 몬스터’ 운영\n\n- 학생들이 직접 식생활 교육 활동 아이디어를 내고 실행해요!\n\n□ 춘양초등학교(교장 김성동)은 지난 9월 8일(화)부터 학생들이 직접 식생활 교육으로 계획한 ‘급식 몬스터’ 활동을 전교생 대상으로 운영하고 있다.\n\n□ 춘양초등학교는 올해 식생활 교육 선도학교로 선정됨과 더불어 ‘초등학교 집단급식소 남은 음식물 목표관리 및 감량 경진대회’에 참가하여 잔반 처리 및 남은 음식물 감량 활동을 적극 진행하고 있다.\n\n□ 춘양초 4학년 정OO 학생의 아이디어로 시작된 ‘급식 몬스터’ 활동은 남은 음식물 감량을 목표로 학반별로 몬스터 볼 스티커를 받을 수 있는 조건을 학급 회의를 통해 결정한다. 그 후 학반별 기준에 맞게 잔반을 처리하고, 몬스터볼 스티커를 획득해 포켓몬을 포획하는 방식으로 운영되고 있다. 활동 기획 및 활동 자료 제작 과정이 학생들의 손으로 모두 진행되었다는 것이 인상 깊었다.\n\n□ 이번 학생 주도 식생활 교육‘급식 몬스터’활동에 참여한 4학년 김OO 학생은 “친구들이 계획하고 만든 활동에 전교생이 함께 참여하니 신기했다. 급식 먹을 때 음식을 안 남기고 다 먹어서 모든 포켓몬을 잡아 보겠다.”라는 소감을 밝혔다.\n\n□ 김성동 교장은 \"학생들이 학교의 잔반 처리 문제를 스스로 인식하여 문제 해결을 위해 흥미로운 활동을 만들고 실행에 옮기는 모습을 볼 수 있었다. 앞으로도 잔반없이 입이 행복한 춘양초등학교가 되길 바란다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1644746/photo1.jpg",
+    "alt": "춘양초, 학생 주도 식생활 교육 '급식 몬스터' 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1644746/photo2.jpg",
+    "alt": "춘양초, 학생 주도 식생활 교육 '급식 몬스터' 운영 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1644746/photo3.jpg",
+    "alt": "춘양초, 학생 주도 식생활 교육 '급식 몬스터' 운영 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1644746/photo4.jpg",
+    "alt": "춘양초, 학생 주도 식생활 교육 '급식 몬스터' 운영 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1644746"
+  },
+  "theme": "student",
+  "label": "급식 몬스터"
+ },
+ {
+  "id": "press-1647304",
+  "cat": "press",
+  "title": "춘양초학교, 멕시코 전통 음식 또띠아 만들기 행사 운영",
+  "date": "2026-09-23",
+  "body": "멕시코 전통 음식 또띠아 만들기 행사 운영\n\n- 멕시코 전통 음식 또띠아를 친구들과 함께 만들어 보아요!\n\n□ 춘양초등학교(교장 김성동)은 지난 9월 22일(화), 본교 3~6학년을 대상으로 ‘멕시코 전통 음식 또띠아 만들기 행사’를 각반 교실에서 운영하였다.\n\n□ 국제교류 운영학교와 식생활 교육 선도학교를 함께 운영하는 춘양초등학교는 융합형 특색 교육을 실시하기 위해 세계 여러나라의 전통 음식들을 알아보고, 그 중 저학년과 고학년 모두 만들 수 있는 비가열 조리 음식인 ‘또띠아’를 선택해 각 반 교실에서 만들어 보는 시간을 가졌다.\n\n□ 먼저 기원전 10,000원 무렵 고대 아즈텍과 마야 문명이 있던 메소아메리카 지역에서 옥수수를 재배하기 시작하면서 주식으로 먹게 된 또띠아의 유래에 대해 알아보았다. 다음으로는 조리 실습 안전교육을 거친 뒤 친구들과 함께 재료를 손질하며 나만의 또띠아를 만들어 보는 순서로 진행되었다.\n\n□ 이번 ‘멕시코 전통 음식 또띠아 만들기’활동에 참여한 6학년 정OO 학생은 “다른 나라의 음식 역사도 알아보고, 전통 음식도 만드니까 정말 재밌었어요. 내가 만드니까 더욱 특별하고 맛있어지는 것 같아요.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"프랑스 명언으로 ‘당신이 무엇을 먹는지 말해달라. 그러면 당신이 어떤 사람인지 말해주겠다.’ 라는 문장이 있다. 앞으로도 학생들이 여러 나라의 식문화를 몸과 마음으로 체험해 볼 수 있는 기회를 가져 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1647304/photo1.jpg",
+    "alt": "춘양초학교, 멕시코 전통 음식 또띠아 만들기 행사 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1647304/photo2.jpg",
+    "alt": "춘양초학교, 멕시코 전통 음식 또띠아 만들기 행사 운영 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1647304/photo3.jpg",
+    "alt": "춘양초학교, 멕시코 전통 음식 또띠아 만들기 행사 운영 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1647304"
+  },
+  "theme": "culture",
+  "label": "멕시코 또띠아 만들기"
+ },
+ {
+  "id": "press-1648123",
+  "cat": "press",
+  "title": "춘양초, 급식으로 떠나는 세계여행 베트남 편 실시",
+  "date": "2026-09-29",
+  "body": "급식으로 떠나는 세계여행 ‘베트남 편’ 실시\n\n- 베트남 전통 음식들을 급식 메뉴를 통해 만나 보아요!\n\n□ 춘양초등학교(교장 김성동)은 지난 9월 15일(화), 전교생을 대상으로 ‘급식으로 떠나는 세계여행 두 번째 베트남 편’을 춘양초 급식실에서 운영하였다.\n\n□ 춘양초등학교는 2023년부터 국제교류 운영학교로서 세계시민의식을 키우기 위해 다른 나라 학교와 MOU를 맺어 다양한 활동을 진행해오고 있다. 이와 더불어 춘양초등학교의 특색교육인 식생활 교육과 결합해 ‘급식으로 떠나는 세계여행 두 번째 베트남 편’을 실시하였다. 급식 메뉴로 베트남의 전통음식 인 껌찌엔(볶음밥), 쌀국수, 짜조, 공심채 볶음을 선보여 베트남의 식문화를 직접 체험해볼 수 있는 시간을 가져 보았다.\n\n□ 이번 ‘급식으로 떠나는 세계여행’활동에 참여한 4학년 정OO 학생은 “급식으로 떠나는 세계여행 덕분에 껌지엔이 베트남어로 밥을 뜻하는 ‘껌’과 볶는다는 뜻의 ‘찌엔’이 합쳐진 뜻이란 걸 알았어요. 다음 나라 음식도 벌써부터 기대돼요.”는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"이번 ‘급식으로 떠나는 세계여행’이 일본 편에 이어 두 번째로 베트남 편까지 진행되었다. 단발성으로 끝나는 것이 아닌 지속성 있는 활동이라는 것에서 인상 깊었따. 앞으로도 국제교류 운영학교 사업과 식생활 교육을 결합해 세계 여러나라의 식문화를 맛보는 것 뿐 아니라 직접 만들어 볼 수 있는 수 있는 활동도 진행해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1648123/photo1.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 베트남 편 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1648123/photo2.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 베트남 편 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1648123/photo3.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 베트남 편 실시 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1648123/photo4.jpg",
+    "alt": "춘양초, 급식으로 떠나는 세계여행 베트남 편 실시 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1648123"
+  },
+  "theme": "culture",
+  "label": "세계여행 베트남 편"
+ },
+ {
+  "id": "press-1649831",
+  "cat": "press",
+  "title": "춘양초, 온(溫) 가족 맛나는 집밥 인증 주간 운영",
+  "date": "2026-10-06",
+  "body": "온(溫) 가족 맛나는 집밥 인증 주간 운영\n\n- 가족들과 함께 오붓하게 음식을 만들고 남김없이 다 먹어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 9월 21일(월)부터 10월 2일(금)까지 전교생을 대상으로 ‘온(溫) 가족 맛나는 집밥 인증 주간’을 각 가정에서 운영하였다.\n\n□ 올해 학교급식 선도학교로 지정된 춘양초등학교는 ‘맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기’란 주제로 학생, 학부모, 교사 등 교육공동체가 모두 함께하는 식생활 교육을 운영하고 있다.\n\n□ 이번 프로그램에서는 가족과 함께하는 밥상머리 식생활 교육 활동으로 대화 시간을 마련하고 가족 간의 따스한 정을 나누기 위한 목적으로 진행되었다. 운영 기간 내 가족과 함께 집밥을 만들고, 가족과 집밥을 맛있게 먹는 모습을 촬영하여 사진 인화를 하는 방식으로 운영하였다. 또한, 집밥을 다 먹은 소감을 제출하여 최종 인증을 받을 수 있도록 구성되었다.\n\n□ 이번 ‘온 가족 맛나는 집밥 인증 주간’에 참여한 3학년 박OO 학생 학부모님은 “할머니가 해주는 밥은 건강해지는 밥이라며 맛있다고 말해주는 아이들 덕분에 웃으며 식사할 수 있었습니다.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"학교에서뿐만 아니라 가정에서도 식생활 교육이 이루어지는 모습을 지켜볼 수 있었다. 앞으로도 춘양초등학교는 교육공동체 모두가 함께하는 식생활 프로그램으로 끈끈한 정을 나눌 수 있는 교육을 실천하겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1649831/photo1.jpg",
+    "alt": "춘양초, 온(溫) 가족 맛나는 집밥 인증 주간 운영 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1649831/photo2.jpg",
+    "alt": "춘양초, 온(溫) 가족 맛나는 집밥 인증 주간 운영 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1649831/photo3.jpg",
+    "alt": "춘양초, 온(溫) 가족 맛나는 집밥 인증 주간 운영 활동 사진 3"
+   },
+   {
+    "src": "assets/press/1649831/photo4.jpg",
+    "alt": "춘양초, 온(溫) 가족 맛나는 집밥 인증 주간 운영 활동 사진 4"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1649831"
+  },
+  "theme": "community",
+  "label": "온 가족 집밥 인증 주간"
+ },
+ {
+  "id": "press-1651178",
+  "cat": "press",
+  "title": "춘양초, 나만의 식기 만들기 식생활 교육 활동 실시",
+  "date": "2026-10-12",
+  "body": "나만의 식기 만들기 식생활 교육 활동 실시\n\n- 나만의 식기를 아름답게 만들고, 음식을 담아 먹어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 10월 7일(수), 3~4학년을 대상으로 ‘나만의 식기 만들기 식생활 교육’을 운영하였다.\n\n□ 올해 학교급식 선도학교를 운영하고 있는 춘양초등학교는 ‘맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기’란 주제로 학생, 학부모, 교사 등 교육공동체가 모두 함께하는 식생활 교육을 운영하고 있다.\n\n□ 이번 프로그램에서는 음식을 아름답게 담을 수 있는 나만의 식기를 만들어 올바른 식습관을 형성하고자 하는 목표를 가지고 진행되었다. 외부 전문 도예가를 학교로 초청하여 식기의 중요성에 대해 인식하고 학생들이 직접 나만의 식기를 디자인하고 만들어 보는 방식으로 운영 되었다.\n\n□ 이번 ‘나만의 식기 만들기 식생활 교육’에 참여한 3학년 정OO 학생은 “내가 만든 식기에 직접 음식을 담아 먹으면 더 맛있을 것 같아요. 얼른 식기가 예쁘게 구워져서 저한테 왔으면 좋겠어요.”라는 참여 소감을 밝혔다.\n\n□ 김성동 교장은 \"식생활교육에 있어 음식 뿐만 아니라 ‘식기’까지 범위를 확장하여 올바른 식습관 형성에 도움을 줄 수 있는 뜻 깊은 활동이였다. 앞으로도 식생활교육을 운영하는데 있어 ‘음식’뿐만 아니라 다양한 영역과 연계한 융합형 교육들을 설계하고 진행해 보겠다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1651178/photo1.jpg",
+    "alt": "춘양초, 나만의 식기 만들기 식생활 교육 활동 실시 활동 사진 1"
+   },
+   {
+    "src": "assets/press/1651178/photo2.jpg",
+    "alt": "춘양초, 나만의 식기 만들기 식생활 교육 활동 실시 활동 사진 2"
+   },
+   {
+    "src": "assets/press/1651178/photo3.jpg",
+    "alt": "춘양초, 나만의 식기 만들기 식생활 교육 활동 실시 활동 사진 3"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1651178"
+  },
+  "theme": "career",
+  "label": "도예가와 나만의 식기"
+ },
+ {
+  "id": "press-1651179",
+  "cat": "press",
+  "title": "춘양초, 볍씨에서부터 김밥까지! 쌀맛나는 학교",
+  "date": "2026-10-12",
+  "body": "볍씨에서부터 김밥까지! 쌀맛나는 학교 마무리!\n\n- 한해 동안 쌀을 재배하고, 탈곡하여 김밥까지 만들어 먹었어요!\n\n□ 춘양초등학교(교장 김성동)은 지난 5월 19일(화)부터 10월 8일(목)까지 춘양초 4~6학년 및 교직원이 힘을 합쳐 ‘볍씨에서부터 김밥까지! 쌀맛나는 학교!’를 운영하였다.\n\n□ 올해 ‘쌀맛나는 학교’로 지정된 춘양초등학교는 초등학교 교육과정과 연계한 쌀 관련 맞춤 교육 및 다양한 쌀 소비 관련 체험활동을 운영하고 있다.\n\n□ 춘양초 학생과 교직원들이 힘을 합쳐 기른 벼를 전통 기구 ‘홀태’를 이용해 탈곡하고, 탈곡한 벼를 ‘매통’을 이용해 껍질을 벗겨내는 순서로 진행되었다. 그리고 추수한 쌀과 함께 여러 가지 식재료를 활용하여 학생들이 직접 김밥을 만들고, 먹어보는 활동도 함께 진행되었다.\n\n□ 이번 ‘볍씨에서 김밥까지! 쌀맛나는 학교!’활동에 참여한 4학년 김OO 학생은 “우리가 열심히 기른 벼가 쌀이 되고, 직접 탈곡도 하고, 껍질도 벗겨보니 엄청 신기했어요. 그러다보니 김밥이 훨씬 더 맛있게 느껴졌어요.”라는 소감을 밝혔다.\n\n□ 김성동 교장은 \"올해 쌀맛나는 학교를 운영하며 학생들이 우리 쌀의 가치에 대해 알아가고, 그를 통해 음식의 소중함을 몸과 마음으로 깨닫게 되는 좋은 활동이였다. 춘양초 학생들이 이번 경험을 통해 쌀 한톨 한톨의 가치를 마음 깊이 새기고, 음식을 남기지 않는 올바른 식습관이 자리 잡길 바란다.”라고 말했다.",
+  "images": [
+   {
+    "src": "assets/press/1651179/photo1.jpg",
+    "alt": "학생들이 탈곡한 벼를 담은 그릇을 들고 웃고 있는 모습"
+   },
+   {
+    "src": "assets/press/1651179/photo2.jpg",
+    "alt": "학생들이 전통 농기구 홀태로 벼를 탈곡하는 모습"
+   },
+   {
+    "src": "assets/press/1651179/photo3.jpg",
+    "alt": "학생이 직접 만든 김밥을 먹는 모습"
+   },
+   {
+    "src": "assets/press/1651179/photo4.jpg",
+    "alt": "학생들이 교실에서 김밥을 마는 모습"
+   }
+  ],
+  "source": {
+   "name": "경상북도봉화교육지원청 학교교육홍보",
+   "short": "봉화교육지원청",
+   "url": "https://www.gbe.kr/bh/na/ntt/selectNttInfo.do?mi=19559&bbsId=1806&nttSn=1651179"
+  },
+  "theme": "rice",
+  "label": "볍씨에서 김밥까지"
+ }
+]</script>
+<script id="app">
+(function(){
+  const $ = s => document.querySelector(s);
+  let posts = [];
+  try { posts = JSON.parse(document.getElementById('press-data').textContent) || []; } catch (e) { posts = []; }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scrollOpts = block => ({block, behavior: reduceMotion ? 'auto' : 'smooth'});
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = d => d.replace(/-/g, '.');
+  const safeSrc = s => typeof s === 'string' && (/^data:image\/(jpeg|png|webp|gif);base64,/.test(s) || /^https:\/\//.test(s) || /^assets\/[\w\/.-]+$/.test(s));
+  const safeUrl = s => typeof s === 'string' && /^https?:\/\//.test(s);
+  // 최신 날짜가 먼저, 같은 날이면 나중에 올라온 글(게시글 번호가 큰 글)이 먼저
+  const byNewest = (a, b) => b.date.localeCompare(a.date) || String(b.id).localeCompare(String(a.id), undefined, {numeric: true});
+  const pressItems = () => posts.filter(p => p.cat === 'press').sort(byNewest);
+  const photosOf = p => (p.images || []).filter(im => im && safeSrc(im.src));
+
+  // 보도자료: 최신순 카드, 9개씩 더 보기. 사진을 누르면 원문 전체가 창으로 뜬다
+  const PRESS_STEP = 9;
+  let pressShown = PRESS_STEP;
+
+  function card(p){
+    const im = photosOf(p)[0];
+    return '<article class="press-card">' +
+      '<button type="button" class="press-toggle" data-id="' + esc(p.id) + '" aria-haspopup="dialog">' +
+        (im ? '<img class="press-cover" src="' + esc(im.src) + '" alt="' + esc(im.alt || '') + '" loading="lazy">'
+            : '<span class="press-cover is-empty" aria-hidden="true"></span>') +
+        '<span class="press-title">' + esc(p.title) + '</span>' +
+        '<span class="press-meta">' + fmt(p.date) + (p.source && p.source.short ? ' · ' + esc(p.source.short) : '') + '</span>' +
+      '</button></article>';
+  }
+  function renderPress(){
+    const items = pressItems();
+    const box = $('#press-list');
+    if (!items.length) { box.innerHTML = '<p class="press-empty">아직 올라온 보도자료가 없습니다.</p>'; return; }
+    const left = items.length - pressShown;
+    const actions =
+      (left > 0 ? '<button type="button" class="btn btn-ghost" id="pressMore">더 보기 (' + left + '건 남음)</button>' : '') +
+      (pressShown > PRESS_STEP ? '<button type="button" class="btn btn-ghost" id="pressLess">접기</button>' : '');
+    box.innerHTML = '<div class="press-grid">' + items.slice(0, pressShown).map(card).join('') + '</div>' +
+      (actions ? '<div class="press-actions">' + actions + '</div>' : '');
+  }
+
+  // 보도자료 원문 창: 바깥을 누르거나 X·Esc로 닫힌다
+  const modal = $('#press-modal'), modalBox = modal.querySelector('.modal-box');
+  let lastFocus = null;
+  function openModal(id){
+    const p = posts.find(x => x.id === id);
+    if (!p) return;
+    $('#modal-meta').textContent = fmt(p.date) + (p.source && p.source.short ? ' · ' + p.source.short : '');
+    $('#modal-title').textContent = p.title;
+    const photos = photosOf(p), box = $('#modal-photos');
+    box.innerHTML = photos.map(im => '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || '') + '">').join('');
+    box.hidden = !photos.length;
+    box.classList.toggle('is-odd', photos.length > 1 && photos.length % 2 === 1);
+    $('#modal-text').textContent = p.body || '';
+    const link = $('#modal-origin'), ok = p.source && safeUrl(p.source.url);
+    link.hidden = !ok;
+    if (ok) link.href = p.source.url;
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    modalBox.scrollTop = 0;
+    $('#modal-close').focus({preventScroll: true});
+  }
+  function closeModal(){
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll: true});
+  }
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  $('#modal-close').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      // 창이 열려 있는 동안 키보드 이동은 창 안에서만
+      const items = [$('#modal-close'), $('#modal-origin')].filter(el => !el.hidden);
+      const i = items.indexOf(document.activeElement);
+      e.preventDefault();
+      items[(i + (e.shiftKey ? items.length - 1 : 1)) % items.length].focus();
+    }
+  });
+
+  // 월별 교육 인포그래픽: 보도자료를 달마다 묶고, 갈래(아이콘)로 골라 볼 수 있게
+  const ic = d => '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+  const THEMES = {
+    rice: {name: '쌀맛나는 학교', icon: ic('<path d="M2 8.5h12a6 5.5 0 0 1-12 0Z"/><path d="M4.5 8.5a3.5 3 0 0 1 7 0"/>')},
+    culture: {name: '우리·세계 식문화', icon: ic('<circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2.2 2 2.2 10 0 12M8 2c-2.2 2-2.2 10 0 12"/>')},
+    green: {name: '텃밭·잔반 Zero', icon: ic('<path d="M8 14V7.5"/><path d="M8 9.5C8 6.5 6 4.5 3 4.5c0 3 2 5 5 5Z"/><path d="M8 7.5c0-2.6 1.8-4.2 4.6-4.2 0 2.6-1.8 4.2-4.6 4.2Z"/>')},
+    student: {name: '학생 주도', icon: ic('<path d="M4 14.5V2"/><path d="M4 2.5h8.5L10.5 5.5l2 3H4"/>')},
+    app: {name: '식생활 앱·골든벨', icon: ic('<path d="M4 11.5V7.5a4 4 0 0 1 8 0v4l1.5 1.5h-11Z"/><path d="M6.5 14.5a1.5 1.5 0 0 0 3 0"/>')},
+    community: {name: '교육공동체 함께', icon: ic('<circle cx="5.5" cy="5" r="2.2"/><circle cx="11.2" cy="5.6" r="1.8"/><path d="M1.5 13.5c0-2.6 1.8-4.2 4-4.2s4 1.6 4 4.2"/><path d="M10.2 9.4c2.2 0 4.3 1.4 4.3 4.1"/>')},
+    career: {name: '진로 체험', icon: ic('<path d="M4.5 9.5A2.8 2.8 0 1 1 6 4.2a2.6 2.6 0 0 1 4 0 2.8 2.8 0 1 1 1.5 5.3V13.5h-7Z"/><path d="M4.5 11h7"/>')},
+    etc: {name: '기타', icon: ic('<circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/>')}
+  };
+  const THEME_ORDER = ['rice', 'culture', 'green', 'student', 'app', 'community', 'career', 'etc'];
+  // 아직 보도자료가 없는 예정 활동 (월 단위)
+  const PLANS = [
+    {month: '2026-11', theme: 'green', label: '텃밭에서 기른 고추·배추로 김장체험',
+     detail: '학생들이 직접 기른 생태텃밭에서 수확한 고추와 배추로 김장체험'}
+  ];
+  let themeFilter = null;
+  const themeOf = p => THEMES[p.theme] ? p.theme : 'etc';
+  const shortLabel = p => p.label || p.title.replace(/^춘양초(?:학교|등학교)?,\s*/, '').replace(/\s*(?:활동\s*)?(?:실시|운영|개최)$/, '');
+
+  function renderMonths(){
+    const items = pressItems().reverse();
+    const body = $('#months-body');
+    if (!items.length) {
+      $('#themes').innerHTML = '';
+      body.innerHTML = '<p class="press-empty">보도자료가 올라오면 달마다 모아서 보여 드려요.</p>';
+      return;
+    }
+    // 첫 달부터 마지막 달(예정 활동 포함)까지 빈 달도 포함
+    const span = items.map(p => p.date.slice(0, 7)).concat(PLANS.map(p => p.month)).sort();
+    let [y, m] = span[0].split('-').map(Number);
+    const [ly, lm] = span[span.length - 1].split('-').map(Number);
+    const months = [];
+    while (y < ly || (y === ly && m <= lm)) { months.push(y + '-' + String(m).padStart(2, '0')); if (++m > 12) { m = 1; y++; } }
+    const byMonth = Object.fromEntries(months.map(k => [k, []]));
+    const plansBy = Object.fromEntries(months.map(k => [k, []]));
+    items.forEach(p => byMonth[p.date.slice(0, 7)].push(p));
+    PLANS.forEach(p => plansBy[p.month].push(p));
+    const max = Math.max(...months.map(k => Math.max(byMonth[k].length, plansBy[k].length)));
+    const monthNum = k => Number(k.slice(5));
+
+    const themeCount = {};
+    items.forEach(p => { const t = themeOf(p); themeCount[t] = (themeCount[t] || 0) + 1; });
+    const used = THEME_ORDER.filter(t => themeCount[t]);
+    if (themeFilter && !themeCount[themeFilter]) themeFilter = null;
+    $('#themes').innerHTML =
+      '<button type="button" class="theme-btn" data-theme="" aria-pressed="' + (!themeFilter) + '">전체 <em>' + items.length + '</em></button>' +
+      used.map(t => '<button type="button" class="theme-btn" data-theme="' + t + '" aria-pressed="' + (themeFilter === t) + '">' +
+        THEMES[t].icon + THEMES[t].name + ' <em>' + themeCount[t] + '</em></button>').join('');
+
+    const mark = t => themeFilter ? (t === themeFilter ? ' hit' : ' dim') : '';
+    body.innerHTML = months.map(k => {
+      const list = byMonth[k], plans = plansBy[k], n = monthNum(k);
+      const head = '<div class="month-name">' + n + '월</div>';
+      if (!list.length && !plans.length) return '<div class="month">' + head + '<div class="month-empty">' + (n === 8 ? '여름방학' : (n === 1 || n === 2 ? '겨울방학' : '보도 없음')) + '</div></div>';
+      let bar;
+      if (list.length) {
+        const hits = themeFilter ? list.filter(p => themeOf(p) === themeFilter).length : list.length;
+        bar = '<div class="month-bar" title="' + n + '월 ' + list.length + '건"><div class="bar-track">' +
+          '<span class="bar-total' + (themeFilter ? ' is-context' : '') + '" style="width:' + (list.length / max * 100) + '%"></span>' +
+          (themeFilter && hits ? '<span class="bar-hit" style="width:' + (hits / max * 100) + '%"></span>' : '') +
+          '</div><span class="bar-count">' + (themeFilter ? hits + '건<small> / ' + list.length + '</small>' : list.length + '건') + '</span></div>';
+      } else {
+        bar = '<div class="month-bar" title="' + n + '월 예정 ' + plans.length + '건"><div class="bar-track">' +
+          '<span class="bar-plan" style="width:' + (plans.length / max * 100) + '%"></span>' +
+          '</div><span class="bar-count">' + plans.length + '건<small> 예정</small></span></div>';
+      }
+      const acts = '<div class="acts">' + list.map(p => {
+        const t = themeOf(p);
+        return '<button type="button" class="act' + mark(t) + '" data-id="' + esc(p.id) + '" aria-haspopup="dialog" title="' + esc(THEMES[t].name + ' · ' + p.title) + '">' +
+          THEMES[t].icon + '<time>' + n + '.' + Number(p.date.slice(8, 10)) + '</time><span>' + esc(shortLabel(p)) + '</span></button>';
+      }).join('') + plans.map(p => {
+        const t = THEMES[p.theme] ? p.theme : 'etc';
+        return '<span class="act is-plan' + mark(t) + '" title="' + esc(THEMES[t].name + ' · ' + (p.detail || p.label) + ' (예정)') + '">' +
+          THEMES[t].icon + '<time>' + n + '월</time><span>' + esc(p.label) + '</span><span class="plan-tag">예정</span></span>';
+      }).join('') + '</div>';
+      return '<div class="month">' + head + bar + acts + '</div>';
+    }).join('');
+  }
+
+  // 소개의 일곱 갈래 카드: 아이콘 채우기
+  function renderPrograms(){
+    document.querySelectorAll('.program[data-theme]').forEach(el => {
+      const t = el.dataset.theme;
+      el.querySelector('.program-icon').innerHTML = THEMES[t] ? THEMES[t].icon : '';
+    });
+  }
+
+  $('#press-list').addEventListener('click', e => {
+    if (e.target.closest('#pressMore')) { pressShown += PRESS_STEP; renderPress(); return; }
+    if (e.target.closest('#pressLess')) {
+      pressShown = PRESS_STEP; renderPress();
+      document.getElementById('press').scrollIntoView(scrollOpts('start'));
+      return;
+    }
+    const t = e.target.closest('.press-toggle');
+    if (t) openModal(t.dataset.id);
+  });
+  $('#themes').addEventListener('click', e => {
+    const b = e.target.closest('.theme-btn');
+    if (!b) return;
+    themeFilter = b.dataset.theme && themeFilter !== b.dataset.theme ? b.dataset.theme : null;
+    renderMonths();
+  });
+  $('#programs').addEventListener('click', e => {
+    const a = e.target.closest('.program[data-theme]');
+    if (!a) return;
+    e.preventDefault();
+    themeFilter = a.dataset.theme;
+    renderMonths();
+    document.getElementById('months').scrollIntoView(scrollOpts('start'));
+  });
+  $('#months-body').addEventListener('click', e => {
+    const a = e.target.closest('.act[data-id]');
+    if (a) openModal(a.dataset.id);
+  });
+
+  // 오늘의 급식: 나이스(NEIS) 급식식단정보에서 오늘(없으면 2주 안의 다음 급식일) 중식을 불러온다
+  const NEIS = {office: 'R10', school: '8961038', key: ''};  // 경상북도교육청 · 춘양초등학교. 인증키를 받으면 key에 넣기
+  const WEEK = ['일', '월', '화', '수', '목', '금', '토'];
+  const ymd = d => d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+
+  function mealMessage(text){
+    $('#tray').setAttribute('aria-busy', 'false');
+    $('#tray').querySelectorAll('.is-loading').forEach(c => c.classList.remove('is-loading'));
+    $('#meal-note').textContent = text;
+    $('#meal-note').hidden = false;
+    $('#meal-foot').hidden = true;
+  }
+  function renderMeal(row, isToday){
+    const dishes = row.DDISH_NM.split(/<br\s*\/?>/i).map(s => s.trim()).filter(Boolean).map(s => {
+      const m = s.match(/^(.*?)\s*\(([\d.]+)\)\s*$/);
+      return {name: (m ? m[1] : s).replace(/\/자율$/, '').trim(), allergy: m ? m[2].split('.').filter(Boolean).join('·') : ''};
+    });
+    if (!dishes.length) { mealMessage('급식 메뉴가 아직 올라오지 않았어요.'); return; }
+    // 식판 배치: 밥은 왼쪽 아래, 국·찌개는 오른쪽 아래, 나머지 반찬은 위 칸에 한 줄 최대 4개
+    let rice = dishes.findIndex(d => /밥$/.test(d.name));
+    if (rice < 0) rice = 0;
+    const soup = dishes.findIndex((d, i) => i !== rice && /(국|탕|찌개|스프|수프)$/.test(d.name));
+    const sides = dishes.filter((d, i) => i !== rice && i !== soup);
+    const rows = Math.ceil(sides.length / 4), spans = [];
+    for (let r = 0; r < rows; r++) {
+      const count = Math.floor(sides.length / rows) + (r < sides.length % rows ? 1 : 0);
+      for (let i = 0; i < count; i++) spans.push(12 / count);
+    }
+    const cell = (d, cls, span) => '<div class="cell ' + cls + '" role="listitem" style="grid-column:span ' + span + '"><b>' + esc(d.name) + '</b>' +
+      (d.allergy ? '<i aria-label="알레르기 ' + d.allergy + '">' + d.allergy + '</i>' : '') + '</div>';
+    $('#tray').innerHTML = sides.map((d, i) => cell(d, 'side', spans[i])).join('') +
+      cell(dishes[rice], 'rice', soup < 0 ? 12 : 6) + (soup < 0 ? '' : cell(dishes[soup], 'soup', 6));
+    $('#tray').setAttribute('aria-busy', 'false');
+
+    const day = new Date(+row.MLSV_YMD.slice(0, 4), +row.MLSV_YMD.slice(4, 6) - 1, +row.MLSV_YMD.slice(6, 8));
+    $('#meal-title').textContent = isToday ? '오늘의 급식' : '다음 급식';
+    $('#meal-date').textContent = (day.getMonth() + 1) + '월 ' + day.getDate() + '일 (' + WEEK[day.getDay()] + ') · ' + row.MMEAL_SC_NM;
+    const kcal = parseFloat(row.CAL_INFO), protein = (row.NTR_INFO || '').match(/단백질\(g\)\s*:\s*([\d.]+)/);
+    $('#meal-kcal').textContent = isNaN(kcal) ? '-' : Math.round(kcal);
+    $('#meal-protein').textContent = protein ? '단백질 ' + protein[1] + ' g' : '';
+    $('#meal-note').hidden = true;
+    $('#meal-foot').hidden = false;
+  }
+  async function loadMeal(){
+    const today = new Date(), until = new Date();
+    until.setDate(until.getDate() + 14);
+    const params = new URLSearchParams({Type: 'json', pIndex: '1', pSize: '5', ATPT_OFCDC_SC_CODE: NEIS.office,
+      SD_SCHUL_CODE: NEIS.school, MLSV_FROM_YMD: ymd(today), MLSV_TO_YMD: ymd(until)});
+    if (NEIS.key) params.set('KEY', NEIS.key);
+    try {
+      const res = await fetch('https://open.neis.go.kr/hub/mealServiceDietInfo?' + params);
+      const data = await res.json();
+      const rows = data.mealServiceDietInfo ? data.mealServiceDietInfo[1].row : [];
+      const sorted = rows.slice().sort((a, b) => a.MLSV_YMD.localeCompare(b.MLSV_YMD));
+      const lunch = sorted.find(r => r.MMEAL_SC_CODE === '2') || sorted[0];
+      if (!lunch) { mealMessage('앞으로 2주 동안 예정된 급식이 없어요. 방학이나 휴업일일 수 있어요.'); return; }
+      renderMeal(lunch, lunch.MLSV_YMD === ymd(today));
+    } catch (e) {
+      mealMessage('급식 정보를 불러오지 못했어요. 잠시 뒤에 다시 열어 주세요.');
+    }
+  }
+
+  renderPress();
+  renderMonths();
+  renderPrograms();
+  loadMeal();
+})();
+</script>
+
+</body>
+</html>
