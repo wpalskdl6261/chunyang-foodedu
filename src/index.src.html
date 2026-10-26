@@ -96,6 +96,10 @@ section{scroll-margin-top:80px}
 .about{display:flex;flex-direction:column;gap:28px;padding-block:52px}
 .about-head{display:flex;flex-direction:column;gap:6px}
 .about-head p{margin:0;color:var(--muted)}
+.intro-video{margin:0;display:flex;flex-direction:column;gap:10px}
+.intro-video video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:18px;background:#000;box-shadow:0 10px 30px var(--shadow)}
+.intro-video figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font-weight:600;font-size:.95rem}
+.intro-video figcaption span{font-weight:400;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .programs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .program{min-width:0;background:var(--surface);border:1px solid transparent;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
 a.program:hover{border-color:var(--leaf)}
@@ -280,6 +284,10 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
         <h2>우리 학교 식생활교육</h2>
         <p>올해 보도자료 30건에 담긴 활동을 일곱 갈래로 정리했어요. 갈래를 누르면 아래 월별 표에서 그 활동만 모아 볼 수 있어요.</p>
       </div>
+      <figure class="intro-video">
+        <video controls playsinline preload="metadata" src="assets/video/mat-him.mp4#t=0.5" aria-label="맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기 소개 영상"></video>
+        <figcaption>맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기 <span>1분 35초</span></figcaption>
+      </figure>
       <div class="programs" id="programs">
         <div class="program is-lead">
           <span class="lead-label">2026학년도 특색교육</span>
