@@ -40,9 +40,9 @@ python tools/import_press.py .cache/drafts .cache/press-raw assets/press content
 
 `content/library.json`에 한 줄씩 추가하고 파일은 `assets/library/` 아래에 둡니다.
 
-- 영상: `videos`에 `{"id", "title", "date", "duration", "src" 또는 "youtube"(영상 ID), "poster", "desc"}`
 - 월별 영양교육자료: `monthly`에 `{"month": "2026-11", "topic", "grade", "file"}`
-- 사업 결과 보고서: `reports`의 해당 사업 `items`에 `{"title", "date", "file", "pages", "cover", "grade"(학년별 프로젝트일 때)}`
+- 식생활 프로젝트 수업: `projects`에 `{"grade": 3, "title", "date", "file", "pages"}`
+- 사업 결과 보고서: `reports`의 해당 사업 `items`에 `{"title", "date", "file", "pages", "cover"}`
 
 ## GitHub Pages로 공개하기
 

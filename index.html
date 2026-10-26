@@ -190,11 +190,12 @@ a.program:hover{border-color:var(--leaf)}
 .lib-title{font-weight:600;line-height:1.45}
 .lib-meta{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .lib-empty{margin:0;padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--tray-edge);border-radius:14px;font-size:.92rem}
-.vid-card{min-width:0;display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
-.vid-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--tray)}
-.vid-thumb img{display:block;width:100%;height:100%;object-fit:cover}
-.vid-play{position:absolute;inset:0;margin:auto;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center}
-.vid-card:hover .lib-title{color:var(--leaf)}
+.grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gcard{min-width:0;display:flex;flex-direction:column;gap:8px;min-height:130px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.gcard.is-empty{background:transparent;border-style:dashed;color:var(--muted)}
+.glink{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);text-decoration:none;color:inherit}
+.glink:hover{border-color:var(--leaf)}
+.glink:hover .lib-title{color:var(--leaf)}
 .month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .mcard{min-width:0;display:flex;flex-direction:column;gap:6px;min-height:118px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
 .mcard.is-empty{background:transparent;border-style:dashed;color:var(--muted)}
@@ -214,7 +215,6 @@ a.program:hover{border-color:var(--leaf)}
 .doc-icon img{width:100%;height:100%;object-fit:cover;border-radius:6px}
 .doc-body{min-width:0;display:flex;flex-direction:column;gap:4px}
 .grade-tag{display:inline-block;margin-right:4px;font-size:.72rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);vertical-align:1px}
-.modal-video,.modal-yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
 
 /* 보도자료 원문 창 */
 .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:rgba(8,14,11,.6)}
@@ -252,6 +252,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
 @media (max-width:900px){
   .lib-grid{grid-template-columns:repeat(2,1fr)}
   .month-grid{grid-template-columns:repeat(3,1fr)}
+  .grade-grid{grid-template-columns:repeat(2,1fr)}
   .press-grid{grid-template-columns:repeat(2,1fr)}
   .programs{grid-template-columns:repeat(2,1fr)}
 }
@@ -406,15 +407,15 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   <section class="library wrap" id="library">
     <div class="library-head">
       <h2>자료실</h2>
-      <p>식생활 영상, 매달 영양교육 자료, 사업 결과 보고서를 모아 둡니다.</p>
+      <p>매달 영양교육 자료, 학년별 식생활 프로젝트 수업, 사업 결과 보고서를 모아 둡니다.</p>
     </div>
     <div class="lib-tabs" role="tablist" aria-label="자료 종류">
-      <button type="button" role="tab" id="tab-videos" aria-controls="lib-videos" aria-selected="true">식생활 영상</button>
-      <button type="button" role="tab" id="tab-monthly" aria-controls="lib-monthly" aria-selected="false">월별 영양교육자료</button>
+      <button type="button" role="tab" id="tab-monthly" aria-controls="lib-monthly" aria-selected="true">월별 영양교육자료</button>
+      <button type="button" role="tab" id="tab-projects" aria-controls="lib-projects" aria-selected="false">식생활 프로젝트 수업</button>
       <button type="button" role="tab" id="tab-reports" aria-controls="lib-reports" aria-selected="false">사업 결과 보고서</button>
     </div>
-    <div class="lib-panel" id="lib-videos" role="tabpanel" aria-labelledby="tab-videos"></div>
-    <div class="lib-panel" id="lib-monthly" role="tabpanel" aria-labelledby="tab-monthly" hidden></div>
+    <div class="lib-panel" id="lib-monthly" role="tabpanel" aria-labelledby="tab-monthly"></div>
+    <div class="lib-panel" id="lib-projects" role="tabpanel" aria-labelledby="tab-projects" hidden></div>
     <div class="lib-panel" id="lib-reports" role="tabpanel" aria-labelledby="tab-reports" hidden></div>
   </section>
 
@@ -1269,18 +1270,8 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
 ]</script>
 <script type="application/json" id="library-data">{
  "schoolYear": 2026,
- "videos": [
-  {
-   "id": "mat-him",
-   "title": "맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기",
-   "date": "2026-10-26",
-   "duration": "1분 35초",
-   "src": "assets/video/mat-him.mp4",
-   "poster": "assets/video/mat-him-poster.jpg",
-   "desc": "올해 특색교육인 식생활교육 프로그램을 소개하는 영상이에요. 학생, 학부모, 교직원이 함께하는 춘양초 식생활교육을 만나 보세요."
-  }
- ],
  "monthly": [],
+ "projects": [],
  "reports": [
   {
    "key": "rice",
@@ -1290,12 +1281,6 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   {
    "key": "waste",
    "name": "남은 음식물 감량 경진대회",
-   "items": []
-  },
-  {
-   "key": "project",
-   "name": "학년별 영양 프로젝트 수업",
-   "grades": true,
    "items": []
   }
  ]
@@ -1571,22 +1556,13 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
     }
   }
 
-  // 자료실: 식생활 영상 / 월별 영양교육자료(학년도 3월~다음 해 2월) / 사업별 결과 보고서
+  // 자료실: 월별 영양교육자료(학년도 3월~다음 해 2월) / 학년별 식생활 프로젝트 수업 / 사업별 결과 보고서
   let library = {};
   try { library = JSON.parse(document.getElementById('library-data').textContent) || {}; } catch (e) { library = {}; }
   const safeFile = s => typeof s === 'string' && (/^https:\/\//.test(s) || /^assets\/[\w\/.-]+$/.test(s));
-  const playIcon = '<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6L13 8z"/></svg>';
   const metaLine = parts => parts.filter(Boolean).map(esc).join(' · ');
 
   function renderLibrary(){
-    const vids = (library.videos || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-    $('#lib-videos').innerHTML = vids.length ? '<div class="lib-grid">' + vids.map(v => {
-      const thumb = v.poster && safeFile(v.poster) ? v.poster : (v.youtube ? 'https://i.ytimg.com/vi/' + encodeURIComponent(v.youtube) + '/hqdefault.jpg' : '');
-      return '<button type="button" class="vid-card" data-video="' + esc(v.id) + '" aria-haspopup="dialog">' +
-        '<span class="vid-thumb">' + (thumb ? '<img src="' + esc(thumb) + '" alt="" loading="lazy">' : '') + '<span class="vid-play">' + playIcon + '</span></span>' +
-        '<span class="lib-title">' + esc(v.title) + '</span><span class="lib-meta">' + metaLine([v.date && fmt(v.date), v.duration]) + '</span></button>';
-    }).join('') + '</div>' : '<p class="lib-empty">아직 올린 영상이 없어요.</p>';
-
     const year = library.schoolYear || new Date().getFullYear(), byMonth = {};
     (library.monthly || []).forEach(m => { (byMonth[m.month] = byMonth[m.month] || []).push(m); });
     const cells = [];
@@ -1601,6 +1577,15 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
     }
     $('#lib-monthly').innerHTML = '<div class="month-grid">' + cells.join('') + '</div>';
 
+    const projects = library.projects || [];
+    $('#lib-projects').innerHTML = '<div class="grade-grid">' + [1, 2, 3, 4, 5, 6].map(g => {
+      const items = projects.filter(r => Number(r.grade) === g).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      return '<div class="gcard' + (items.length ? '' : ' is-empty') + '"><span class="mcard-month">' + g + '학년</span>' +
+        (items.length ? items.map(r => '<a class="glink" href="' + (safeFile(r.file) ? esc(r.file) : '#library') + '" target="_blank" rel="noopener">' +
+          '<span class="lib-title">' + esc(r.title) + '</span><span class="lib-meta">' + metaLine([r.date && fmt(r.date), r.pages && r.pages + '쪽']) + '</span></a>').join('')
+          : '<span>준비 중</span>') + '</div>';
+    }).join('') + '</div>';
+
     $('#lib-reports').innerHTML = (library.reports || []).map(g => {
       const items = (g.items || []).slice().sort((a, b) => (a.grade || 0) - (b.grade || 0) || (b.date || '').localeCompare(a.date || ''));
       return '<div class="report-group"><h3>' + esc(g.name) + (items.length ? ' <em>' + items.length + '건</em>' : '') + '</h3>' +
@@ -1611,22 +1596,6 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
           : '<p class="lib-empty">' + (g.grades ? '1~6학년 프로젝트 수업 보고서가 올라올 예정이에요.' : '보고서가 올라올 예정이에요.') + '</p>') + '</div>';
     }).join('');
   }
-  function openVideo(id){
-    const v = (library.videos || []).find(x => x.id === id);
-    if (!v) return;
-    $('#modal-meta').textContent = [v.date && fmt(v.date), v.duration].filter(Boolean).join(' · ');
-    $('#modal-title').textContent = v.title;
-    const box = $('#modal-photos');
-    box.classList.remove('is-odd');
-    box.style.gridTemplateColumns = '1fr';
-    box.innerHTML = v.youtube
-      ? '<iframe class="modal-yt" src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.youtube) + '?autoplay=1&rel=0" title="' + esc(v.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
-      : (safeFile(v.src) ? '<video class="modal-video" controls autoplay playsinline src="' + esc(v.src) + '"' + (v.poster && safeFile(v.poster) ? ' poster="' + esc(v.poster) + '"' : '') + '></video>' : '');
-    box.hidden = !box.innerHTML;
-    $('#modal-text').textContent = v.desc || '';
-    $('#modal-origin').hidden = true;
-    showModal();
-  }
   document.querySelectorAll('.lib-tabs [role="tab"]').forEach(t => t.addEventListener('click', () => {
     document.querySelectorAll('.lib-tabs [role="tab"]').forEach(o => {
       const on = o === t;
@@ -1634,10 +1603,6 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
     });
   }));
-  $('#lib-videos').addEventListener('click', e => {
-    const b = e.target.closest('[data-video]');
-    if (b) openVideo(b.dataset.video);
-  });
 
   renderPress();
   renderMonths();
