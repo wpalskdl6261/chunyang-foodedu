@@ -177,6 +177,45 @@ a.program:hover{border-color:var(--leaf)}
 .press-meta{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .press-empty{margin:0;padding:32px;text-align:center;color:var(--muted);border:1px dashed var(--tray-edge);border-radius:16px}
 
+/* 자료실 */
+.library{display:flex;flex-direction:column;gap:18px;padding-block:56px 20px}
+.library-head{display:flex;flex-direction:column;gap:6px}
+.library-head p{margin:0;color:var(--muted)}
+.lib-tabs{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;border-bottom:1px solid var(--line)}
+.lib-tabs button{font:inherit;font-weight:500;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;color:var(--muted);cursor:pointer;white-space:nowrap;margin-bottom:-1px}
+.lib-tabs button:hover{color:var(--fg)}
+.lib-tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--leaf);font-weight:700}
+.lib-panel{padding-top:6px}
+.lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.lib-title{font-weight:600;line-height:1.45}
+.lib-meta{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.lib-empty{margin:0;padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--tray-edge);border-radius:14px;font-size:.92rem}
+.vid-card{min-width:0;display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.vid-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--tray)}
+.vid-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.vid-play{position:absolute;inset:0;margin:auto;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center}
+.vid-card:hover .lib-title{color:var(--leaf)}
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mcard{min-width:0;display:flex;flex-direction:column;gap:6px;min-height:118px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.mcard.is-empty{background:transparent;border-style:dashed;color:var(--muted)}
+.mcard-month{font-weight:700;font-size:1.05rem;color:var(--fg)}
+.mcard.is-empty .mcard-month{color:var(--muted)}
+.mcard-topic{font-weight:600;line-height:1.4}
+.mcard-actions{display:flex;gap:6px;margin-top:auto;padding-top:6px}
+.mini-btn{font-size:.8rem;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--tray-edge);color:var(--fg);text-decoration:none}
+.mini-btn:hover{border-color:var(--leaf);color:var(--leaf)}
+.report-group{display:flex;flex-direction:column;gap:12px}
+.report-group + .report-group{margin-top:22px}
+.report-group h3{font-size:1.1rem;font-weight:700;display:flex;align-items:baseline;gap:8px}
+.report-group h3 em{font-style:normal;font-size:.82rem;font-weight:500;color:var(--muted)}
+.doc-card{min-width:0;display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:inherit}
+.doc-card:hover{border-color:var(--leaf)}
+.doc-icon{flex:none;width:44px;height:58px;border-radius:6px;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center;font-size:.72rem;font-weight:700}
+.doc-icon img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.doc-body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.grade-tag{display:inline-block;margin-right:4px;font-size:.72rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);vertical-align:1px}
+.modal-video,.modal-yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+
 /* 보도자료 원문 창 */
 .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:rgba(8,14,11,.6)}
 .modal-box{width:min(760px,100%);max-height:100%;overflow-y:auto;overscroll-behavior:contain;background:var(--surface);color:var(--fg);border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.35)}
@@ -211,6 +250,8 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
 .foot-link:hover{border-color:var(--leaf);color:var(--leaf)}
 
 @media (max-width:900px){
+  .lib-grid{grid-template-columns:repeat(2,1fr)}
+  .month-grid{grid-template-columns:repeat(3,1fr)}
   .press-grid{grid-template-columns:repeat(2,1fr)}
   .programs{grid-template-columns:repeat(2,1fr)}
 }
@@ -219,6 +260,8 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
 }
 @media (max-width:520px){
   .programs{grid-template-columns:1fr}
+  .lib-grid{grid-template-columns:1fr}
+  .month-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:640px){
   .nav{width:100%}
@@ -245,6 +288,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       <a href="#about">소개</a>
       <a href="#meal">오늘의 급식</a>
       <a href="#months">월별 교육</a>
+      <a href="#library">자료실</a>
       <a href="#press">보도자료</a>
     </nav>
   </div>
@@ -357,6 +401,21 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
     </div>
     <div class="themes" id="themes" role="group" aria-label="주제별로 보기"></div>
     <div class="timeline" id="months-body"><p class="press-empty">보도자료가 올라오면 달마다 모아서 보여 드려요.</p></div>
+  </section>
+
+  <section class="library wrap" id="library">
+    <div class="library-head">
+      <h2>자료실</h2>
+      <p>식생활 영상, 매달 영양교육 자료, 사업 결과 보고서를 모아 둡니다.</p>
+    </div>
+    <div class="lib-tabs" role="tablist" aria-label="자료 종류">
+      <button type="button" role="tab" id="tab-videos" aria-controls="lib-videos" aria-selected="true">식생활 영상</button>
+      <button type="button" role="tab" id="tab-monthly" aria-controls="lib-monthly" aria-selected="false">월별 영양교육자료</button>
+      <button type="button" role="tab" id="tab-reports" aria-controls="lib-reports" aria-selected="false">사업 결과 보고서</button>
+    </div>
+    <div class="lib-panel" id="lib-videos" role="tabpanel" aria-labelledby="tab-videos"></div>
+    <div class="lib-panel" id="lib-monthly" role="tabpanel" aria-labelledby="tab-monthly" hidden></div>
+    <div class="lib-panel" id="lib-reports" role="tabpanel" aria-labelledby="tab-reports" hidden></div>
   </section>
 
   <section class="press wrap" id="press">
@@ -1208,6 +1267,39 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   "label": "볍씨에서 김밥까지"
  }
 ]</script>
+<script type="application/json" id="library-data">{
+ "schoolYear": 2026,
+ "videos": [
+  {
+   "id": "mat-him",
+   "title": "맛(M.A.T)나는 영양식생활 교육프로그램으로 모두의 힘(H.I.M) 기르기",
+   "date": "2026-10-26",
+   "duration": "1분 35초",
+   "src": "assets/video/mat-him.mp4",
+   "poster": "assets/video/mat-him-poster.jpg",
+   "desc": "올해 특색교육인 식생활교육 프로그램을 소개하는 영상이에요. 학생, 학부모, 교직원이 함께하는 춘양초 식생활교육을 만나 보세요."
+  }
+ ],
+ "monthly": [],
+ "reports": [
+  {
+   "key": "rice",
+   "name": "쌀맛나는 학교",
+   "items": []
+  },
+  {
+   "key": "waste",
+   "name": "남은 음식물 감량 경진대회",
+   "items": []
+  },
+  {
+   "key": "project",
+   "name": "학년별 영양 프로젝트 수업",
+   "grades": true,
+   "items": []
+  }
+ ]
+}</script>
 <script id="app">
 (function(){
   const $ = s => document.querySelector(s);
@@ -1263,10 +1355,14 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
     box.innerHTML = photos.map(im => '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || '') + '">').join('');
     box.hidden = !photos.length;
     box.classList.toggle('is-odd', photos.length > 1 && photos.length % 2 === 1);
+    box.style.gridTemplateColumns = '';
     $('#modal-text').textContent = p.body || '';
     const link = $('#modal-origin'), ok = p.source && safeUrl(p.source.url);
     link.hidden = !ok;
     if (ok) link.href = p.source.url;
+    showModal();
+  }
+  function showModal(){
     lastFocus = document.activeElement;
     modal.hidden = false;
     document.documentElement.style.overflow = 'hidden';
@@ -1276,6 +1372,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   function closeModal(){
     if (modal.hidden) return;
     modal.hidden = true;
+    $('#modal-photos').innerHTML = '';  // 재생 중인 영상 멈춤
     document.documentElement.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll: true});
   }
@@ -1474,9 +1571,78 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
     }
   }
 
+  // 자료실: 식생활 영상 / 월별 영양교육자료(학년도 3월~다음 해 2월) / 사업별 결과 보고서
+  let library = {};
+  try { library = JSON.parse(document.getElementById('library-data').textContent) || {}; } catch (e) { library = {}; }
+  const safeFile = s => typeof s === 'string' && (/^https:\/\//.test(s) || /^assets\/[\w\/.-]+$/.test(s));
+  const playIcon = '<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6L13 8z"/></svg>';
+  const metaLine = parts => parts.filter(Boolean).map(esc).join(' · ');
+
+  function renderLibrary(){
+    const vids = (library.videos || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    $('#lib-videos').innerHTML = vids.length ? '<div class="lib-grid">' + vids.map(v => {
+      const thumb = v.poster && safeFile(v.poster) ? v.poster : (v.youtube ? 'https://i.ytimg.com/vi/' + encodeURIComponent(v.youtube) + '/hqdefault.jpg' : '');
+      return '<button type="button" class="vid-card" data-video="' + esc(v.id) + '" aria-haspopup="dialog">' +
+        '<span class="vid-thumb">' + (thumb ? '<img src="' + esc(thumb) + '" alt="" loading="lazy">' : '') + '<span class="vid-play">' + playIcon + '</span></span>' +
+        '<span class="lib-title">' + esc(v.title) + '</span><span class="lib-meta">' + metaLine([v.date && fmt(v.date), v.duration]) + '</span></button>';
+    }).join('') + '</div>' : '<p class="lib-empty">아직 올린 영상이 없어요.</p>';
+
+    const year = library.schoolYear || new Date().getFullYear(), byMonth = {};
+    (library.monthly || []).forEach(m => { (byMonth[m.month] = byMonth[m.month] || []).push(m); });
+    const cells = [];
+    for (let i = 0; i < 12; i++) {
+      const mo = (i + 2) % 12 + 1, key = (mo >= 3 ? year : year + 1) + '-' + String(mo).padStart(2, '0');
+      const list = byMonth[key] || [];
+      if (!list.length) { cells.push('<div class="mcard is-empty"><span class="mcard-month">' + mo + '월</span><span>준비 중</span></div>'); continue; }
+      list.forEach(m => cells.push('<div class="mcard"><span class="mcard-month">' + mo + '월</span><span class="mcard-topic">' + esc(m.topic || '') + '</span>' +
+        (m.grade ? '<span class="lib-meta">' + esc(m.grade) + '</span>' : '') +
+        (safeFile(m.file) ? '<div class="mcard-actions"><a class="mini-btn" href="' + esc(m.file) + '" target="_blank" rel="noopener">보기</a><a class="mini-btn" href="' + esc(m.file) + '" download>내려받기</a></div>' : '') +
+        '</div>'));
+    }
+    $('#lib-monthly').innerHTML = '<div class="month-grid">' + cells.join('') + '</div>';
+
+    $('#lib-reports').innerHTML = (library.reports || []).map(g => {
+      const items = (g.items || []).slice().sort((a, b) => (a.grade || 0) - (b.grade || 0) || (b.date || '').localeCompare(a.date || ''));
+      return '<div class="report-group"><h3>' + esc(g.name) + (items.length ? ' <em>' + items.length + '건</em>' : '') + '</h3>' +
+        (items.length ? '<div class="lib-grid">' + items.map(r => '<a class="doc-card" href="' + (safeFile(r.file) ? esc(r.file) : '#library') + '" target="_blank" rel="noopener">' +
+          '<span class="doc-icon">' + (r.cover && safeFile(r.cover) ? '<img src="' + esc(r.cover) + '" alt="">' : 'PDF') + '</span>' +
+          '<span class="doc-body"><span class="lib-title">' + (r.grade ? '<span class="grade-tag">' + esc(r.grade) + '학년</span>' : '') + esc(r.title) + '</span>' +
+          '<span class="lib-meta">' + metaLine([r.date && fmt(r.date), r.pages && r.pages + '쪽']) + '</span></span></a>').join('') + '</div>'
+          : '<p class="lib-empty">' + (g.grades ? '1~6학년 프로젝트 수업 보고서가 올라올 예정이에요.' : '보고서가 올라올 예정이에요.') + '</p>') + '</div>';
+    }).join('');
+  }
+  function openVideo(id){
+    const v = (library.videos || []).find(x => x.id === id);
+    if (!v) return;
+    $('#modal-meta').textContent = [v.date && fmt(v.date), v.duration].filter(Boolean).join(' · ');
+    $('#modal-title').textContent = v.title;
+    const box = $('#modal-photos');
+    box.classList.remove('is-odd');
+    box.style.gridTemplateColumns = '1fr';
+    box.innerHTML = v.youtube
+      ? '<iframe class="modal-yt" src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.youtube) + '?autoplay=1&rel=0" title="' + esc(v.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+      : (safeFile(v.src) ? '<video class="modal-video" controls autoplay playsinline src="' + esc(v.src) + '"' + (v.poster && safeFile(v.poster) ? ' poster="' + esc(v.poster) + '"' : '') + '></video>' : '');
+    box.hidden = !box.innerHTML;
+    $('#modal-text').textContent = v.desc || '';
+    $('#modal-origin').hidden = true;
+    showModal();
+  }
+  document.querySelectorAll('.lib-tabs [role="tab"]').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.lib-tabs [role="tab"]').forEach(o => {
+      const on = o === t;
+      o.setAttribute('aria-selected', String(on));
+      document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+    });
+  }));
+  $('#lib-videos').addEventListener('click', e => {
+    const b = e.target.closest('[data-video]');
+    if (b) openVideo(b.dataset.video);
+  });
+
   renderPress();
   renderMonths();
   renderPrograms();
+  renderLibrary();
   loadMeal();
 })();
 </script>

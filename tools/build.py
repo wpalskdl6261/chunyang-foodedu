@@ -17,7 +17,8 @@ FONT_CDN = ('<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactu
 FONT_WEIGHTS = {"Regular": 400, "Medium": 500, "SemiBold": 600, "Bold": 700}
 SCHOOL_TAG = re.compile(r"^\s*[\[(]\s*춘양초(?:등학교)?\s*[\])]\s*")
 DATA_BLOCK = re.compile(r'(<script type="application/json" id="press-data">)(.*?)(</script>)', re.S)
-DESCRIPTION = "학교급식 선도학교를 운영하는 춘양초등학교의 식생활교육 이야기"
+LIB_BLOCK = re.compile(r'(<script type="application/json" id="library-data">)(.*?)(</script>)', re.S)
+DESCRIPTION ="학교급식 선도학교를 운영하는 춘양초등학교의 식생활교육 이야기"
 
 
 def data_uri(path, mime):
@@ -65,6 +66,10 @@ def main():
     posts = press_posts(single)
     payload = json.dumps(posts, ensure_ascii=False, indent=1).replace("<", "\\u003c")
     src = DATA_BLOCK.sub(lambda m: m.group(1) + payload + m.group(3), src, count=1)
+    library = json.loads((ROOT / "content" / "library.json").read_text(encoding="utf-8"))
+    library.pop("_help", None)
+    lib_payload = json.dumps(library, ensure_ascii=False, indent=1).replace("<", "\\u003c")
+    src = LIB_BLOCK.sub(lambda m: m.group(1) + lib_payload + m.group(3), src, count=1)
 
     if single:
         out = ROOT / "dist" / "chunyang-food-edu.html"

@@ -36,6 +36,14 @@ python tools/import_press.py .cache/drafts .cache/press-raw assets/press content
 
 그다음 `content/press-themes.json`에 새 게시글 번호의 갈래(`rice`, `culture`, `green`, `student`, `app`, `community`, `career`)와 짧은 이름을 넣고 페이지를 다시 만듭니다.
 
+## 자료실에 자료 넣기
+
+`content/library.json`에 한 줄씩 추가하고 파일은 `assets/library/` 아래에 둡니다.
+
+- 영상: `videos`에 `{"id", "title", "date", "duration", "src" 또는 "youtube"(영상 ID), "poster", "desc"}`
+- 월별 영양교육자료: `monthly`에 `{"month": "2026-11", "topic", "grade", "file"}`
+- 사업 결과 보고서: `reports`의 해당 사업 `items`에 `{"title", "date", "file", "pages", "cover", "grade"(학년별 프로젝트일 때)}`
+
 ## GitHub Pages로 공개하기
 
 저장소의 **Settings → Pages**에서 Source를 `Deploy from a branch`, Branch를 `main` / `(root)`로 정하면
