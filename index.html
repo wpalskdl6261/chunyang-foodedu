@@ -1270,7 +1270,62 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
 ]</script>
 <script type="application/json" id="library-data">{
  "schoolYear": 2026,
- "monthly": [],
+ "monthly": [
+  {
+   "month": "2026-03",
+   "topic": "2026학년도 학교급식 운영 안내",
+   "grade": "가정통신문",
+   "file": "assets/library/monthly-2026-03.pdf"
+  },
+  {
+   "month": "2026-04",
+   "topic": "수산물과 식품알레르기",
+   "grade": "영양소식지",
+   "file": "assets/library/monthly-2026-04.pdf"
+  },
+  {
+   "month": "2026-05",
+   "topic": "덜 짜고, 덜 달게, 건강한 식생활",
+   "grade": "가정통신문",
+   "file": "assets/library/monthly-2026-05.pdf"
+  },
+  {
+   "month": "2026-06",
+   "topic": "6월의 절기와 제철 식재료, 단오",
+   "grade": "영양소식지",
+   "file": "assets/library/monthly-2026-06.pdf"
+  },
+  {
+   "month": "2026-07",
+   "topic": "음식물쓰레기 줄이기",
+   "grade": "영양소식지",
+   "file": "assets/library/monthly-2026-07.pdf"
+  },
+  {
+   "month": "2026-08",
+   "topic": "여름철 식중독 예방",
+   "grade": "영양소식지 (8·9월)",
+   "file": "assets/library/monthly-2026-08-09.pdf"
+  },
+  {
+   "month": "2026-09",
+   "topic": "여름철 식중독 예방",
+   "grade": "영양소식지 (8·9월)",
+   "file": "assets/library/monthly-2026-08-09.pdf"
+  },
+  {
+   "month": "2026-10",
+   "topic": "꽃게, 독도의 날, 한글날",
+   "grade": "영양소식지",
+   "file": "assets/library/monthly-2026-10.pdf"
+  },
+  {
+   "month": "2026-11",
+   "topic": "배추, 김치의 날, 농업인의 날",
+   "grade": "영양소식지",
+   "file": "assets/library/monthly-2026-11.pdf"
+  }
+ ],
  "projects": [
   {
    "grade": 1,
@@ -1319,12 +1374,26 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   {
    "key": "rice",
    "name": "쌀맛나는 학교",
-   "items": []
+   "items": [
+    {
+     "title": "2026년 쌀맛나는 학교 운영 결과보고",
+     "period": "2026.5.~10.",
+     "pages": 9,
+     "file": "assets/library/report-rice-2026.pdf"
+    }
+   ]
   },
   {
    "key": "waste",
    "name": "남은 음식물 감량 경진대회",
-   "items": []
+   "items": [
+    {
+     "title": "2026년 남은음식물 목표관리 및 감량 경진대회 평가서류",
+     "date": "2026-10-07",
+     "pages": 9,
+     "file": "assets/library/report-waste-2026.pdf"
+    }
+   ]
   }
  ]
 }</script>
@@ -1635,7 +1704,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
         (items.length ? '<div class="lib-grid">' + items.map(r => '<a class="doc-card" href="' + (safeFile(r.file) ? esc(r.file) : '#library') + '" target="_blank" rel="noopener">' +
           '<span class="doc-icon">' + (r.cover && safeFile(r.cover) ? '<img src="' + esc(r.cover) + '" alt="">' : 'PDF') + '</span>' +
           '<span class="doc-body"><span class="lib-title">' + (r.grade ? '<span class="grade-tag">' + esc(r.grade) + '학년</span>' : '') + esc(r.title) + '</span>' +
-          '<span class="lib-meta">' + metaLine([r.date && fmt(r.date), r.pages && r.pages + '쪽']) + '</span></span></a>').join('') + '</div>'
+          '<span class="lib-meta">' + metaLine([r.period || (r.date && fmt(r.date)), r.pages && r.pages + '쪽']) + '</span></span></a>').join('') + '</div>'
           : '<p class="lib-empty">' + (g.grades ? '1~6학년 프로젝트 수업 보고서가 올라올 예정이에요.' : '보고서가 올라올 예정이에요.') + '</p>') + '</div>';
     }).join('');
   }

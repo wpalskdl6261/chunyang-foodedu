@@ -756,7 +756,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
         (items.length ? '<div class="lib-grid">' + items.map(r => '<a class="doc-card" href="' + (safeFile(r.file) ? esc(r.file) : '#library') + '" target="_blank" rel="noopener">' +
           '<span class="doc-icon">' + (r.cover && safeFile(r.cover) ? '<img src="' + esc(r.cover) + '" alt="">' : 'PDF') + '</span>' +
           '<span class="doc-body"><span class="lib-title">' + (r.grade ? '<span class="grade-tag">' + esc(r.grade) + '학년</span>' : '') + esc(r.title) + '</span>' +
-          '<span class="lib-meta">' + metaLine([r.date && fmt(r.date), r.pages && r.pages + '쪽']) + '</span></span></a>').join('') + '</div>'
+          '<span class="lib-meta">' + metaLine([r.period || (r.date && fmt(r.date)), r.pages && r.pages + '쪽']) + '</span></span></a>').join('') + '</div>'
           : '<p class="lib-empty">' + (g.grades ? '1~6학년 프로젝트 수업 보고서가 올라올 예정이에요.' : '보고서가 올라올 예정이에요.') + '</p>') + '</div>';
     }).join('');
   }
