@@ -1303,14 +1303,12 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   },
   {
    "month": "2026-08",
+   "also": [
+    "2026-09"
+   ],
+   "label": "8·9월",
    "topic": "여름철 식중독 예방",
-   "grade": "영양소식지 (8·9월)",
-   "file": "assets/library/monthly-2026-08-09.pdf"
-  },
-  {
-   "month": "2026-09",
-   "topic": "여름철 식중독 예방",
-   "grade": "영양소식지 (8·9월)",
+   "grade": "영양소식지",
    "file": "assets/library/monthly-2026-08-09.pdf"
   },
   {
@@ -1677,12 +1675,15 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   function renderLibrary(){
     const year = library.schoolYear || new Date().getFullYear(), byMonth = {};
     (library.monthly || []).forEach(m => { (byMonth[m.month] = byMonth[m.month] || []).push(m); });
+    // 한 자료가 여러 달을 함께 다루면(also) 그 달 칸은 따로 만들지 않고 합친다
+    const merged = new Set((library.monthly || []).flatMap(m => m.also || []));
     const cells = [];
     for (let i = 0; i < 12; i++) {
       const mo = (i + 2) % 12 + 1, key = (mo >= 3 ? year : year + 1) + '-' + String(mo).padStart(2, '0');
+      if (merged.has(key)) continue;
       const list = byMonth[key] || [];
       if (!list.length) { cells.push('<div class="mcard is-empty"><span class="mcard-month">' + mo + '월</span><span>준비 중</span></div>'); continue; }
-      list.forEach(m => cells.push('<div class="mcard"><span class="mcard-month">' + mo + '월</span><span class="mcard-topic">' + esc(m.topic || '') + '</span>' +
+      list.forEach(m => cells.push('<div class="mcard"><span class="mcard-month">' + esc(m.label || mo + '월') + '</span><span class="mcard-topic">' + esc(m.topic || '') + '</span>' +
         (m.grade ? '<span class="lib-meta">' + esc(m.grade) + '</span>' : '') +
         (safeFile(m.file) ? '<div class="mcard-actions"><a class="mini-btn" href="' + esc(m.file) + '" target="_blank" rel="noopener">보기</a><a class="mini-btn" href="' + esc(m.file) + '" download>내려받기</a></div>' : '') +
         '</div>'));

@@ -7,8 +7,7 @@
     {"month": "2026-05", "topic": "덜 짜고, 덜 달게, 건강한 식생활", "grade": "가정통신문", "file": "assets/library/monthly-2026-05.pdf"},
     {"month": "2026-06", "topic": "6월의 절기와 제철 식재료, 단오", "grade": "영양소식지", "file": "assets/library/monthly-2026-06.pdf"},
     {"month": "2026-07", "topic": "음식물쓰레기 줄이기", "grade": "영양소식지", "file": "assets/library/monthly-2026-07.pdf"},
-    {"month": "2026-08", "topic": "여름철 식중독 예방", "grade": "영양소식지 (8·9월)", "file": "assets/library/monthly-2026-08-09.pdf"},
-    {"month": "2026-09", "topic": "여름철 식중독 예방", "grade": "영양소식지 (8·9월)", "file": "assets/library/monthly-2026-08-09.pdf"},
+    {"month": "2026-08", "also": ["2026-09"], "label": "8·9월", "topic": "여름철 식중독 예방", "grade": "영양소식지", "file": "assets/library/monthly-2026-08-09.pdf"},
     {"month": "2026-10", "topic": "꽃게, 독도의 날, 한글날", "grade": "영양소식지", "file": "assets/library/monthly-2026-10.pdf"},
     {"month": "2026-11", "topic": "배추, 김치의 날, 농업인의 날", "grade": "영양소식지", "file": "assets/library/monthly-2026-11.pdf"}
   ],
