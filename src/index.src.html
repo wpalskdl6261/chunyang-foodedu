@@ -746,7 +746,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       const items = projects.filter(r => Number(r.grade) === g).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
       return '<div class="gcard' + (items.length ? '' : ' is-empty') + '"><span class="mcard-month">' + g + '학년</span>' +
         (items.length ? items.map(r => '<a class="glink" href="' + (safeFile(r.file) ? esc(r.file) : '#library') + '" target="_blank" rel="noopener">' +
-          '<span class="lib-title">' + esc(r.title) + '</span><span class="lib-meta">' + metaLine([r.date && fmt(r.date), r.pages && r.pages + '쪽']) + '</span></a>').join('')
+          '<span class="lib-title">' + esc(r.title) + '</span><span class="lib-meta">' + metaLine([r.period || (r.date && fmt(r.date)), r.pages && r.pages + '쪽']) + '</span></a>').join('')
           : '<span>준비 중</span>') + '</div>';
     }).join('') + '</div>';
 

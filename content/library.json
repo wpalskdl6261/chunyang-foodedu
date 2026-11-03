@@ -1,8 +1,15 @@
 {
-  "_help": "자료실 목록. monthly: 월별 영양교육자료(학년도 3월~다음 해 2월), projects: 학년별 식생활 프로젝트 수업, reports: 사업별 결과 보고서. file은 프로젝트 안 경로(assets/library/...) 또는 https 주소.",
+  "_help": "자료실 목록. monthly: 월별 영양교육자료(학년도 3월~다음 해 2월), projects: 학년별 식생활 프로젝트 수업, reports: 사업별 결과 보고서. file은 프로젝트 안 경로(assets/library/...) 또는 https 주소. 올리기 전에 학생 실명, 개인 연락처, 서명 등 개인정보가 없는지 확인한다.",
   "schoolYear": 2026,
   "monthly": [],
-  "projects": [],
+  "projects": [
+    {"grade": 1, "title": "맛있게 냠냠, 건강하게 쑥쑥!", "period": "2026.6.29.~7.10. · 10차시", "pages": 2, "file": "assets/library/project-grade1-2026.pdf"},
+    {"grade": 2, "title": "건강하고 맛있는 급식 탐험대", "period": "2026.6.1.~7.3. · 10차시", "pages": 2, "file": "assets/library/project-grade2-2026.pdf"},
+    {"grade": 3, "title": "지구를 살리는 식생활 이야기", "period": "2026.6.29.~7.10. · 15차시", "pages": 3, "file": "assets/library/project-grade3-2026.pdf"},
+    {"grade": 4, "title": "올바른 식생활을 위한 교육 영화 제작", "period": "2026.6.1.~7.4. · 15차시", "pages": 2, "file": "assets/library/project-grade4-2026.pdf"},
+    {"grade": 5, "title": "<흑백 영양사> 일일식단 만들기", "period": "2026.6.18.~6.30. · 13차시", "pages": 2, "file": "assets/library/project-grade5-2026.pdf"},
+    {"grade": 6, "title": "내가 먹는 음식은 어디서 왔을까? - 로컬푸드 이용 장려 프로젝트", "period": "2026.6.17.~7.9. · 15차시", "pages": 2, "file": "assets/library/project-grade6-2026.pdf"}
+  ],
   "reports": [
     {"key": "rice", "name": "쌀맛나는 학교", "items": []},
     {"key": "waste", "name": "남은 음식물 감량 경진대회", "items": []}
